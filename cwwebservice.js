@@ -1,4 +1,4 @@
-function mytest1(oDoc)
+function mytest1(oDoc,oHTMLDoc)
 {
 	debugger;
 	debugger;
@@ -18,5 +18,5 @@ function mytest1(oDoc)
 			}
 		}
 	}
-	 document.getElementById("demo").innerHTML = "<ul>"+sPages+"</ul>";
+	oHTMLDoc.getElementById("demo").innerHTML = "<ul>"+sPages+"</ul>";
 }
