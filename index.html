@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html style="width:1300px;height:890px" lang="en">
+    <head>
+        <base href='/' >
+        <meta charset="UTF-8" />
+        <meta http-equiv="x-ua-compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, intitial-scale=1" />
+		<link href="https://fonts.googleapis.com/css?family=Dosis:400,700" rel="stylesheet">
+        <title>CaseWare & CaseView Web Service</title>
+		<script src="cwwebservice.js.js"></script>
+		<script>
+			debugger;
+			debugger;
+			var params_list = new VBArray(window.dialogArguments);
+			var params = params_list.toArray();
+			var oCaseViewDocument =  params[0];
+			var oCaseWareApp = params[1];
+			
+			mytest1(oCaseViewDocument);
+			
+			if (window.XMLHttpRequest) {
+				// code for modern browsers
+				xhttp = new XMLHttpRequest();
+			 } else {
+				// code for old IE browsers
+				xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}			
+			
+
+			xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+				   // Typical action to be performed when the document is ready:
+				   document.getElementById("demo").innerHTML = xhttp.responseText;
+				}
+			};			
+			
+			
+            //var xhr = new XMLHttpRequest();
+            xhttp.open("GET", "http://services.groupkt.com/country/get/all",true);
+			//xhttp.open("GET", "https://jsonplaceholder.typicode.com/photos",true);
+			//xhttp.open("GET", "http://rest-service.guides.spring.io/greeting",true);
+			xhttp.send();
+			//xhr.setRequestHeader("cache-control", "no-cache");
+            //xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+            //xhr.setRequestHeader("accept", "application/json")
+            //xhr.send();
+
+           // var response = xhttp.responseText;
+            //var responseJSON = JSON.parse(response);			
+		</script>
+	</head>
+	<body>
+		<p>Welcome to project CaseWare & CaseView Web Service center.</p>
+		<p><b>Services</b>
+			<ul>
+				<li><a href=#>Update all sections</a></li>
+				<li><a href=#>Export to HTML</a></li>
+				<li><a href=#>Export to PDF</a></li>
+			</ul>
+		</p>
+		<p id="demo">Demo</p>
+	</body>
+</html>
