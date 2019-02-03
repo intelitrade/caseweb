@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, intitial-scale=1" />
 		<link href="https://fonts.googleapis.com/css?family=Dosis:400,700" rel="stylesheet">
         <title>CaseWare & CaseView Web Service</title>
-		<script src="https://intelitrade.github.io/cwwebsolution/cwwebsolution.js"></script>
+		<script src="cwwebservice.js.js"></script>
 		<script>
 			debugger;
 			debugger;
@@ -15,6 +15,8 @@
 			var params = params_list.toArray();
 			var oCaseViewDocument =  params[0];
 			var oCaseWareApp = params[1];
+			
+			mytest1(oCaseViewDocument);
 			
 			if (window.XMLHttpRequest) {
 				// code for modern browsers
@@ -34,9 +36,9 @@
 			
 			
             //var xhr = new XMLHttpRequest();
-           // xhttp.open("GET", "http://services.groupkt.com/country/get/all",true);
+            xhttp.open("GET", "http://services.groupkt.com/country/get/all",true);
 			//xhttp.open("GET", "https://jsonplaceholder.typicode.com/photos",true);
-			xhttp.open("GET", "http://rest-service.guides.spring.io/greeting",true);
+			//xhttp.open("GET", "http://rest-service.guides.spring.io/greeting",true);
 			xhttp.send();
 			//xhr.setRequestHeader("cache-control", "no-cache");
             //xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
@@ -45,11 +47,6 @@
 
            // var response = xhttp.responseText;
             //var responseJSON = JSON.parse(response);			
-			debugger;
-			debugger;
-			mytest(oCaseViewDocument);
-			debugger;
-			debugger;
 		</script>
 	</head>
 	<body>

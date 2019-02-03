@@ -1,4 +1,4 @@
-function mytest(oDoc)
+function mytest1(oDoc)
 {
 	debugger;
 	debugger;
