@@ -5,7 +5,7 @@ function mytest1(oDoc)
 	//alert(oDoc.cellCount());
 	var iSectionCount = oDoc.sectionCount();
 	var sPages = ""
-	for(var i=1;i<=iSecionCount;i++)
+	for(var i=1;i<=iSectionCount;i++)
 	{
 		var oSection = oDoc.section(i);
 		if(oSection && oSection.propExists("CFORMAT")==1)
