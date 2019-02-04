@@ -28,6 +28,8 @@
 				if(sHTML!="" && sHTML!=null && typeof(sHTML)!="undefined")
 				{
 					document.getElementById("demo").innerHTML = sHTML;
+					document.getElementById("cwversion").innerHTML = "CaseWare Version:"+oCaseWareApp.majorVersion;
+					document.getElementById("buildversion").innerHTML = "Build:"+oCaseWareApp.buildVersion;
 				}
 			  }
 			});			
@@ -67,6 +69,8 @@
 	</head>
 	<body>
 		<p>Welcome to project CaseWare & CaseView Web Service center.</p>
+		<p id="cwversion"></p>
+		<p id="buildversion"></p>
 		<p><b>Services</b>
 			<ul>
 				<li><a href=#>Update all sections</a></li>
