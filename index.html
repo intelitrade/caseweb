@@ -17,6 +17,16 @@
 			var oCaseWareApp = params[1];
 			
 			
+			document.attachEvent("onreadystatechange", function(){
+			  // check if the DOM is fully loaded
+			  if(document.readyState === "complete"){
+				// remove the listener, to make sure it isn't fired in future
+				document.detachEvent("onreadystatechange", arguments.callee);
+				// The actual handler...
+			  }
+			});			
+			
+			
 			/*if (window.XMLHttpRequest) {
 				// code for modern browsers
 				xhttp = new XMLHttpRequest();
@@ -62,5 +72,12 @@
 	</body>
 </html>
 <script>
-	mytest1(oCaseViewDocument,document);
+	var sHTML = mytest1(oCaseViewDocument,document);
+	if(sHTML!="" && sHTML!=null && typeof(sHTML)!="undefined")
+	{
+		document.getElementById("demon").innerHTML = sHTML;
+	}
+	
+	
+	
 </script>
