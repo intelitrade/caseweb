@@ -234,8 +234,9 @@ function buildTreeViewEx(sSectionLabel,oDoc)
 										oHTMLParentElement.appendChild(oChildListItemNode);
 										break;
 									}
+									buildTreeViewEx(sSectionLabel,oDoc);
 								}
-								buildTreeViewEx(sSectionLabel,oDoc)
+								
 							}							
 						}
 					}
