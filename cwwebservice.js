@@ -165,7 +165,7 @@ function buildTreeView(aOuterSections,oDoc)
 					{
 						sHTMLStr = "<UL><LI>"+oOuterSection.label+"</LI></UL>";
 					}else{
-						sHTMLStr = "<UL><LI>"+sOuterSection+"</LI>"+sHTMLStr+"</UL>";
+						sHTMLStr = "<UL><LI>"+oOuterSection.label+"</LI>"+sHTMLStr+"</UL>";
 					}
 					/*var sOuterSectionCtype = oOuterSection.propGet("CTYPE");
 					if(sOuterSectionCtype=="NOTECONTROL"||sOuterSectionCtype=="SUBNOTECONTROL"||sOuterSectionCtype=="EXPANDCOLLAPSE"||sOuterSectionCtype=="SUBNOTECONTROLGROUP"||sOuterSectionCtype=="EXPANDCOLLAPSECOMPANY3RDYEAR")
