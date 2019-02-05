@@ -205,7 +205,7 @@ function buildTreeViewEx(sSection,aSubSections,oDoc)
 	try{
 		if(isInputValid(aSubSections) && isInputValid(sSection))
 		{
-			var oSection = oDoc.section(sSection);
+			var oSection = oDoc.sectionByName(sSection);
 			if(oSection)
 			{
 				var oContainer = document.getElementById("MainContentContainer");
