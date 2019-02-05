@@ -219,7 +219,7 @@ function buildTreeViewEx(sSection,aSubSections,oDoc)
 						if(oContainer && oContainer.children.length==0)
 						{
 							var oParentNode = document.createElement("UL");
-							oParentNode.setAttribute("id", );
+							oParentNode.setAttribute("id",sMainSectionId);
 							var oChildNode = document.createElement("LI");
 							var oTextnode = document.createTextNode(sSection);
 							oChildNode.appendChild(oTextnode);
