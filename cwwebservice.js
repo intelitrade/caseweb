@@ -200,6 +200,7 @@ function buildTreeView(aOuterSections,oDoc)
 	}
 }
 
+//Build a treeview based on section passed in
 function buildTreeViewEx(sSection,aSubSections,oDoc)
 {
 	try{
@@ -209,9 +210,9 @@ function buildTreeViewEx(sSection,aSubSections,oDoc)
 			if(oSection)
 			{
 				var oContainer = document.getElementById("MainContentContainer");
-				for (var j=0;j<aSubSection.length;j++)
+				for (var i=0;i<aSubSections.length;i++)
 				{
-					var oSubSection = aSubSection[j]
+					var oSubSection = aSubSections[i];
 					if (oSubSection)
 					{
 						if( oContainer && oContainer.children.length==0)
