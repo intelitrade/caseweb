@@ -213,7 +213,7 @@ function buildTreeViewEx(sSectionLabel,oDoc)
 							var sSubSection = oSubSection.label;
 							var aOuterSections = getOuterSections(sSubSection,oDoc);
 
-							if(validateCharString(aOuterSections))
+							if(isInputValid(aOuterSections))
 							{
 								for(var j=aOuterSections.length;j>=0;j--)
 								{
