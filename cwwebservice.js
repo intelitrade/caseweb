@@ -197,7 +197,8 @@ function buildTreeViewEx(sSectionLabel,oDoc)
 					var oParentNode = document.createElement("UL");
 					var oParentListItemNode = document.createElement("LI");
 					var oTextnode = document.createTextNode(sSectionLabel);
-					oParentListItemNode.appendChild(oTextnode);
+					//oParentListItemNode.appendChild(oTextnode);
+					oParentListItemNode.appendChild(getSectionName(oDoc,sSectionLabel));
 					oParentNode.setAttribute("id",sMainSectionId);	
 					oParentNode.appendChild(oParentListItemNode);				
 					oContainer.appendChild(oParentNode);
@@ -231,7 +232,8 @@ function buildTreeViewEx(sSectionLabel,oDoc)
 									{
 										var oChildNode = document.createElement("UL");
 										var oChildListItemNode = document.createElement("LI");
-										var oChildTextnode = document.createTextNode(sSubSection);
+										//var oChildTextnode = document.createTextNode(sSubSection);
+										var oChildTextnode = document.createTextNode(getSectionName(oDoc,sSectionLabel));
 										oChildListItemNode.appendChild(oChildTextnode);
 										oChildNode.setAttribute("id",iSubSectionId);	
 										oChildNode.appendChild(oChildListItemNode);
@@ -252,4 +254,39 @@ function buildTreeViewEx(sSectionLabel,oDoc)
 	}finally{
 		
 	}	
+}
+
+function getSectionName(oDoc,sSection)
+{
+	try{
+		var CONTROL_TABLE = "PC";
+		var SECTIONHEAD_TABLE = "H1";
+		var SECTIONSUBHEAD_TABLE = "H2";
+		var CTABLETYPE = "CTABLETYPE";
+		var sSectionName = "";
+		//Get the table in the section
+		var aTable = getTableinSection(sSection,oDoc)	  
+		for (var i=0;i<aTable.length;i++)
+		{
+			var oTable = new  oTableCustomProp(aTable[i],oDoc)
+			var sTableType = oTable.getTableProp(CTABLETYPE)
+			//Get control table
+			//if(sTableType==CONTROL_TABLE | sTableType== SECTIONSUBHEAD_TABLE){
+			if(sTableType==CONTROL_TABLE || sTableType== SECTIONSUBHEAD_TABLE || SECTIONSUBHEAD_TABLE){
+				var sTable = aTable[i]
+				//Get the section name
+				var oCell = oDoc.cell(sTable+".HEADER")
+				sSectionName = oDoc.cell(sTable+".HEADER").value
+				
+			}else{
+				//If a control table is not found then return the default name section name
+				sSectionName = "Section name"
+			}
+		} 
+		return sSectionName;
+	}
+	catch(e)
+	{
+		alert(e.description);
+	}
 }
