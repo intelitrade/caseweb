@@ -215,13 +215,14 @@ function buildTreeViewEx(sSection,aSubSections,oDoc)
 					var oSubSection = aSubSections[i];
 					if (oSubSection)
 					{
-						if( oContainer && oContainer.children.length==0)
+						if(oContainer && oContainer.children.length==0)
 						{
 							var oParentNode = document.createElement("UL");
 							var oChildNode = document.createElement("LI");
 							var oTextnode = document.createTextNode(sSection);
 							oChildNode.appendChild(oTextnode);
-							oParentNode.appendChild(oChildNode);	
+							oParentNode.appendChild(oChildNode);
+							oContainer.appendChild(oParentNode);							
 						}else{
 							
 						}
