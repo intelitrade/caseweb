@@ -216,15 +216,27 @@ function buildTreeViewEx(sSection,aSubSections,oDoc)
 					var oSubSection = aSubSections[i];
 					if (oSubSection)
 					{
+						var sSubSection = "S"+oSubSection.index;
 						if(oContainer && oContainer.children.length==0)
 						{
 							var oParentNode = document.createElement("UL");
-							oParentNode.setAttribute("id",sMainSectionId);
-							var oChildNode = document.createElement("LI");
+							var oParentListItemNode = document.createElement("LI");
 							var oTextnode = document.createTextNode(sSection);
-							oChildNode.appendChild(oTextnode);
-							oParentNode.appendChild(oChildNode);
-							oContainer.appendChild(oParentNode);							
+							oParentNode.setAttribute("id",sMainSectionId);
+							
+							var oChildNode = document.createElement("UL");
+							var oChildListItemNode = document.createElement("LI");
+							var oListItemTextnode = document.createTextNode(sSubSection);
+							oChildNode.setAttribute("id",sMainSectionId);
+							
+							oParentListItemNode.appendChild(oTextnode);
+							oParentNode.appendChild(oParentListItemNode);
+							
+							oChildListItemNode.appendChild(oListItemTextnode);
+							oChildNode.appendChild(oChildListItemNode);
+							
+							oParentNode.appendChild(oChildNode);	
+							oContainer.appendChild(oParentNode);
 						}else{
 							
 						}
