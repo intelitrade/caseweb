@@ -218,8 +218,9 @@ function buildTreeViewEx(sSectionLabel,oDoc)
 								for(var j=aOuterSections.length;j>=0;j--)
 								{
 									var sOuterSection = aOuterSections[j];
-									var sHTMLParentElementId = "S"+oOuterSection.index;
+									
 									var oOuterSection = oDoc.sectionByName(sOuterSection);
+									var sHTMLParentElementId = "S"+oOuterSection.index;
 									var oHTMLParentElement = document.getElementById(sHTMLParentElementId);
 									if(oOuterSection && oHTMLParentElement)
 									{
