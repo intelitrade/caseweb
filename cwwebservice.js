@@ -181,7 +181,7 @@ function buildTreeView(aOuterSections,oDoc)
 }
 
 //Build a treeview based on section passed in
-function buildTreeViewEx(sSectionLabel,aSubSections,oDoc)
+function buildTreeViewEx(sSectionLabel,oDoc)
 {
 	try{
 		if(isInputValid(aSubSections) && isInputValid(sSectionLabel))
@@ -191,56 +191,13 @@ function buildTreeViewEx(sSectionLabel,aSubSections,oDoc)
 			{
 				var sMainSectionId = "S"+oSection.index;
 				var oContainer = document.getElementById("MainContentContainer");
-				for (var i=0;i<aSubSections.length;i++)
-				{
-					var oSubSection = aSubSections[i];
-					if (oSubSection)
-					{
-						var sSubSectionId = "S"+oSubSection.index;
-						var sSubSectionLabel = oSubSection.label;
-						if(oContainer && oContainer.children.length==0)
-						{
-							var oParentNode = document.createElement("UL");
-							var oParentListItemNode = document.createElement("LI");
-							var oTextnode = document.createTextNode(sSectionLabel);
-							oParentNode.setAttribute("id",sMainSectionId);
-							
-							var oChildNode = document.createElement("UL");
-							var oChildListItemNode = document.createElement("LI");
-							var oListItemTextnode = document.createTextNode(sSubSectionLabel);
-							oChildNode.setAttribute("id",sSubSectionId);
-							
-							oParentListItemNode.appendChild(oTextnode);
-							oParentNode.appendChild(oParentListItemNode);
-							
-							oChildListItemNode.appendChild(oListItemTextnode);
-							oChildNode.appendChild(oChildListItemNode);
-							
-							oParentNode.appendChild(oChildNode);	
-							oContainer.appendChild(oParentNode);
-						}else{
-							var aOuterSections = getOuterSections(sSubSectionLabel,oDoc);	
-							//var sItemFound = true;
-							if(isInputValid(aOuterSections))
-							{
-								for(var j=aOuterSections.length;j>=0;j--)
-								{
-									var sOuterSection = aOuterSections[j];
-									var oOuterSection = oDoc.sectionByName(sOuterSection);
-									var sElementId = "S"+oOuterSection.index;
-									var oParentNode = document.getElementById(sElementId);
-									if(oOuterSection && oParentNode)
-									{
-										var oChildListItemNode = document.createElement("LI");
-										var oListItemTextnode = document.createTextNode(sSubSectionLabel);
-										oChildNode.setAttribute("id",sSubSectionId);
-										break;
-									}
-								}
-							}								
-						}
-					}
-				}
+				var oParentNode = document.createElement("UL");
+				var oParentListItemNode = document.createElement("LI");
+				var oTextnode = document.createTextNode(sSectionLabel);
+				oParentNode.setAttribute("id",sMainSectionId);				
+				oContainer.appendChild(oParentNode);
+				
+				
 			}
 		}
 	}catch(e)
