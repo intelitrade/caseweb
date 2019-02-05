@@ -227,6 +227,7 @@ function buildTreeViewEx(sSection,aSubSections,oDoc)
 					}
 				}
 			}
+		}
 	}catch(e)
 	{
 		alert(e.description);
