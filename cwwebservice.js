@@ -202,7 +202,7 @@ function buildTreeViewEx(sSectionLabel,oDoc)
 					oParentNode.appendChild(oParentListItemNode);				
 					oContainer.appendChild(oParentNode);
 				}
-				var aSubSection = getSubsections(sSectionLabel,oDoc,iSectionIndex);
+				var aSubSection = getSubsections(sSectionLabel,oDoc)//,iSectionIndex);
 				if(isInputValid(aSubSection))
 				{
 					for(var i=0;i<aSubSection.length;i++)
