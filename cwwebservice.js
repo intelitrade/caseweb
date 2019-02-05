@@ -156,16 +156,14 @@ function buildTreeView(aOuterSections,oDoc)
 			var sHTMLStr = "";
 			for(var i=aOuterSections.length;i>=0;i--)
 			{
-				var sOuterSection = aOuterSections[i];
-				if(!isInputValid(sOuterSection))
-					continue;
-				
-				var oOuterSection = oDoc.sectionByName(sOuterSection);
-				if(oOuterSection)
+				var oOuterSection = aOuterSections[i];
+				if(!isInputValid(oOuterSection))
 				{
+					continue;
+				}else{
 					if(sHTMLStr=="")
 					{
-						sHTMLStr = "<UL><LI>"+sOuterSection+"</LI></UL>";
+						sHTMLStr = "<UL><LI>"+oOuterSection.label+"</LI></UL>";
 					}else{
 						sHTMLStr = "<UL><LI>"+sOuterSection+"</LI>"+sHTMLStr+"</UL>";
 					}
