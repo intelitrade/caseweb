@@ -212,7 +212,7 @@ function buildTreeViewEx(sSectionLabel,oDoc)
 						{
 							var sSubSection = oSubSection.label;
 							var aOuterSections = getOuterSections(sSubSection,oDoc);
-
+							var iSubSectionId = "S"+oSubSection.index;
 							if(isInputValid(aOuterSections))
 							{
 								for(var j=aOuterSections.length;j>=0;j--)
@@ -230,7 +230,7 @@ function buildTreeViewEx(sSectionLabel,oDoc)
 										var oChildListItemNode = document.createElement("LI");
 										var oChildTextnode = document.createTextNode(sSubSection);
 										oChildListItemNode.appendChild(oChildTextnode);
-										oChildNode.setAttribute("id",sHTMLParentElementId);	
+										oChildNode.setAttribute("id",iSubSectionId);	
 										oChildNode.appendChild(oChildListItemNode);
 										oHTMLParentElement.appendChild(oChildNode);
 										break;
