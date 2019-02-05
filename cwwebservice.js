@@ -196,9 +196,9 @@ function buildTreeViewEx(sSectionLabel,oDoc)
 					var sMainSectionId = "S"+oSection.index;
 					var oParentNode = document.createElement("UL");
 					var oParentListItemNode = document.createElement("LI");
-					var oTextnode = document.createTextNode(sSectionLabel);
-					//oParentListItemNode.appendChild(oTextnode);
-					oParentListItemNode.appendChild(getSectionName(oDoc,sSectionLabel));
+					//var oTextnode = document.createTextNode(sSectionLabel);
+					var oTextnode = document.createTextNode(getSectionName(oDoc,sSectionLabel));
+					oParentListItemNode.appendChild(oTextnode);
 					oParentNode.setAttribute("id",sMainSectionId);	
 					oParentNode.appendChild(oParentListItemNode);				
 					oContainer.appendChild(oParentNode);
@@ -268,12 +268,13 @@ function getSectionName(oDoc,sSection)
 		var aTable = getTableinSection(sSection,oDoc,"");	  
 		for (var i=0;i<aTable.length;i++)
 		{
-			var oTable = new  oTableCustomProp(aTable[i],oDoc)
-			var sTableType = oTable.getTableProp(CTABLETYPE)
+			var sTable = aTable[i];
+			var oTable = oDoc.getTableByName(sTable);
+			var sTableType = oTable.propGet(CTABLETYPE);
 			//Get control table
 			//if(sTableType==CONTROL_TABLE | sTableType== SECTIONSUBHEAD_TABLE){
 			if(sTableType==CONTROL_TABLE || sTableType== SECTIONSUBHEAD_TABLE || SECTIONSUBHEAD_TABLE){
-				var sTable = aTable[i];
+				//var sTable = aTable[i];
 				//Get the section name
 				var oCell = oDoc.cell(sTable+".HEADER");
 				sSectionName = oDoc.cell(sTable+".HEADER").value;
