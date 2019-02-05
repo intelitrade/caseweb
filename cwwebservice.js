@@ -265,7 +265,7 @@ function getSectionName(oDoc,sSection)
 		var CTABLETYPE = "CTABLETYPE";
 		var sSectionName = "";
 		//Get the table in the section
-		var aTable = getTableinSection(sSection,oDoc)	  
+		var aTable = getTableinSection(sSection,oDoc,"");	  
 		for (var i=0;i<aTable.length;i++)
 		{
 			var oTable = new  oTableCustomProp(aTable[i],oDoc)
@@ -273,19 +273,17 @@ function getSectionName(oDoc,sSection)
 			//Get control table
 			//if(sTableType==CONTROL_TABLE | sTableType== SECTIONSUBHEAD_TABLE){
 			if(sTableType==CONTROL_TABLE || sTableType== SECTIONSUBHEAD_TABLE || SECTIONSUBHEAD_TABLE){
-				var sTable = aTable[i]
+				var sTable = aTable[i];
 				//Get the section name
-				var oCell = oDoc.cell(sTable+".HEADER")
-				sSectionName = oDoc.cell(sTable+".HEADER").value
-				
+				var oCell = oDoc.cell(sTable+".HEADER");
+				sSectionName = oDoc.cell(sTable+".HEADER").value;
 			}else{
 				//If a control table is not found then return the default name section name
-				sSectionName = "Section name"
+				sSectionName = "Section name";
 			}
 		} 
 		return sSectionName;
-	}
-	catch(e)
+	}catch(e)
 	{
 		alert(e.description);
 	}
@@ -297,20 +295,17 @@ function getTableinSection(sSection,oDoc,iSection)
 	try{
 		var aTables = new Array();
 		var sTableName;
-		var sTableCheck =""
+		var sTableCheck ="";
 		if (oDoc)
 		{
 			if ((iSection>0 && typeof(iSection)=="integer") || sSection=="")
 			{
-				var oSection = oDoc.section(iSection)	
-			}
-			else
-			{
-				var oSection = oDoc.sectionByName(sSection)
+				var oSection = oDoc.section(iSection);	
+			}else{
+				var oSection = oDoc.sectionByName(sSection);
 			}
 		}
-		else
-		{
+		else{
 			if ((iSection>0 && typeof(iSection)=="integer") || sSection=="")
 			{
 				var oSection = document.section(sSection);
@@ -323,8 +318,8 @@ function getTableinSection(sSection,oDoc,iSection)
 		//check if section exits
 		if (oSection)
 		{
-			var iFirstSectIndex = oSection.firstparaIndex
-			var iLastSectIndex = oSection.lastparaIndex
+			var iFirstSectIndex = oSection.firstparaIndex;
+			var iLastSectIndex = oSection.lastparaIndex;
 			for (var j=iFirstSectIndex;j<iLastSectIndex;j++)
 			{
 				if (oDoc)
@@ -348,8 +343,7 @@ function getTableinSection(sSection,oDoc,iSection)
 			}
 		}
 		return aTables;
-	catch(e)
-	{
+	}catch(e){
 		alert(e.description);
 	}finally{
 		
