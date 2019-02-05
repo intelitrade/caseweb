@@ -220,7 +220,8 @@ function buildTreeViewEx(sSectionLabel,aSubSections,oDoc)
 							oContainer.appendChild(oParentNode);
 						}else{
 							var aOuterSections = getOuterSections(sSubSectionLabel,oDoc);	
-							if(validateCharString(aOuterSections))
+							//var sItemFound = true;
+							if(isInputValid(aOuterSections))
 							{
 								for(var j=aOuterSections.length;j>=0;j--)
 								{
@@ -230,7 +231,6 @@ function buildTreeViewEx(sSectionLabel,aSubSections,oDoc)
 									var oParentNode = document.getElementById(sElementId);
 									if(oOuterSection && oParentNode)
 									{
-										var sItemFound = true;
 										var oChildListItemNode = document.createElement("LI");
 										var oListItemTextnode = document.createTextNode(sSubSectionLabel);
 										oChildNode.setAttribute("id",sSubSectionId);
