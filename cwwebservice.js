@@ -194,7 +194,9 @@ function buildTreeViewEx(sSectionLabel,oDoc)
 				var oParentNode = document.createElement("UL");
 				var oParentListItemNode = document.createElement("LI");
 				var oTextnode = document.createTextNode(sSectionLabel);
-				oParentNode.setAttribute("id",sMainSectionId);				
+				oParentListItemNode.appendChild(oTextnode);
+				oParentNode.setAttribute("id",sMainSectionId);	
+				oParentNode.appendChild(oParentListItemNode);				
 				oContainer.appendChild(oParentNode);
 			}
 		}
