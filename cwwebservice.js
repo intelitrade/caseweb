@@ -184,7 +184,7 @@ function buildTreeView(aOuterSections,oDoc)
 function buildTreeViewEx(sSectionLabel,oDoc)
 {
 	try{
-		if(isInputValid(aSubSections) && isInputValid(sSectionLabel))
+		if(isInputValid(sSectionLabel))
 		{
 			var oSection = oDoc.sectionByName(sSectionLabel);
 			if(oSection)
