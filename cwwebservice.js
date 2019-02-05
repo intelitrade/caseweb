@@ -168,26 +168,6 @@ function buildTreeView(aOuterSections,oDoc)
 					}else{
 						sHTMLStr = "<UL><LI>"+sOuterSection+"</LI>"+sHTMLStr+"</UL>";
 					}
-					// = oOuterSection;
-					/*var sOuterSectionCtype = oOuterSection.propGet("CTYPE");
-					if(sOuterSectionCtype=="NOTECONTROL"||sOuterSectionCtype=="SUBNOTECONTROL"||sOuterSectionCtype=="EXPANDCOLLAPSE"||sOuterSectionCtype=="SUBNOTECONTROLGROUP"||sOuterSectionCtype=="EXPANDCOLLAPSECOMPANY3RDYEAR")
-					{
-						aSection[aSection.length]=oOuterSection;
-						//Add the other section within oOuterSection
-						var aReturnSubSection = getSectionInSectionLib(oOuterSection.label,oDoc);
-						//Remoe all sections without a label
-						if(validateCharString(aReturnSubSection))
-						{
-							for(var i=0;i<aReturnSubSection.length;i++)
-							{
-								var oReturnedSection = aReturnSubSection[i];
-								var sReturnedSection = oReturnedSection.label;
-								if(validateCharString(sReturnedSection))
-									aSection[aSection.length] = oReturnedSection; 
-							}
-						}
-						break;
-					}*/
 				}
 			}
 		}
@@ -201,12 +181,12 @@ function buildTreeView(aOuterSections,oDoc)
 }
 
 //Build a treeview based on section passed in
-function buildTreeViewEx(sSection,aSubSections,oDoc)
+function buildTreeViewEx(sSectionLabel,aSubSections,oDoc)
 {
 	try{
 		if(isInputValid(aSubSections) && isInputValid(sSection))
 		{
-			var oSection = oDoc.sectionByName(sSection);
+			var oSection = oDoc.sectionByName(sSectionLabel);
 			if(oSection)
 			{
 				var sMainSectionId = "S"+oSection.index;
@@ -216,18 +196,19 @@ function buildTreeViewEx(sSection,aSubSections,oDoc)
 					var oSubSection = aSubSections[i];
 					if (oSubSection)
 					{
-						var sSubSection = "S"+oSubSection.index;
+						var sSubSectionId = "S"+oSubSection.index;
+						var sSubSectionLabel = oSubSection.label;
 						if(oContainer && oContainer.children.length==0)
 						{
 							var oParentNode = document.createElement("UL");
 							var oParentListItemNode = document.createElement("LI");
-							var oTextnode = document.createTextNode(sSection);
+							var oTextnode = document.createTextNode(sSectionLabel);
 							oParentNode.setAttribute("id",sMainSectionId);
 							
 							var oChildNode = document.createElement("UL");
 							var oChildListItemNode = document.createElement("LI");
-							var oListItemTextnode = document.createTextNode(sSubSection);
-							oChildNode.setAttribute("id",sMainSectionId);
+							var oListItemTextnode = document.createTextNode(sSubSectionLabel);
+							oChildNode.setAttribute("id",sSubSectionId);
 							
 							oParentListItemNode.appendChild(oTextnode);
 							oParentNode.appendChild(oParentListItemNode);
@@ -238,7 +219,26 @@ function buildTreeViewEx(sSection,aSubSections,oDoc)
 							oParentNode.appendChild(oChildNode);	
 							oContainer.appendChild(oParentNode);
 						}else{
-							
+							var aOuterSections = getOuterSections(sSubSectionLabel,oDoc);
+									
+							if(validateCharString(aOuterSections))
+							{
+								for(var j=aOuterSections.length;j>=0;j--)
+								{
+									var sOuterSection = aOuterSections[j];
+									var oOuterSection = oDoc.sectionByName(sOuterSection);
+									var sElementId = "S"+oOuterSection.index;
+									var oParentNode = document.getElementById(sElementId);
+									if(oOuterSection && oParentNode)
+									{
+										var sItemFound = true;
+										var oChildListItemNode = document.createElement("LI");
+										var oListItemTextnode = document.createTextNode(sSubSectionLabel);
+										oChildNode.setAttribute("id",sSubSectionId);
+										break;
+									}
+								}
+							}								
 						}
 					}
 				}
