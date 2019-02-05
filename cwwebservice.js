@@ -209,6 +209,7 @@ function buildTreeViewEx(sSection,aSubSections,oDoc)
 			var oSection = oDoc.sectionByName(sSection);
 			if(oSection)
 			{
+				var sMainSectionId = "S"+oSection.index;
 				var oContainer = document.getElementById("MainContentContainer");
 				for (var i=0;i<aSubSections.length;i++)
 				{
@@ -218,6 +219,7 @@ function buildTreeViewEx(sSection,aSubSections,oDoc)
 						if(oContainer && oContainer.children.length==0)
 						{
 							var oParentNode = document.createElement("UL");
+							oParentNode.setAttribute("id", );
 							var oChildNode = document.createElement("LI");
 							var oTextnode = document.createTextNode(sSection);
 							oChildNode.appendChild(oTextnode);
