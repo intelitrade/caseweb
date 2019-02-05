@@ -228,15 +228,15 @@ function buildTreeViewEx(sSectionLabel,oDoc)
 									{
 										var oChildNode = document.createElement("UL");
 										var oChildListItemNode = document.createElement("LI");
-										var oChildTextnode = document.createTextNode(sOuterSection);
+										var oChildTextnode = document.createTextNode(sSubSection);
 										oChildListItemNode.appendChild(oChildTextnode);
 										oChildNode.setAttribute("id",sHTMLParentElementId);	
-										oHTMLParentElement.appendChild(oChildListItemNode);
+										oChildNode.appendChild(oChildListItemNode);
+										oHTMLParentElement.appendChild(oChildNode);
 										break;
 									}
-									buildTreeViewEx(sSectionLabel,oDoc);
 								}
-								
+								buildTreeViewEx(sSectionLabel,oDoc)
 							}							
 						}
 					}
