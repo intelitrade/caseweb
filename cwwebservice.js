@@ -148,7 +148,7 @@ function getOuterSections(sSection,oDoc)
 	}
 }
 
-function buildTreeView(aOuterSections)
+function buildTreeView(aOuterSections,oDoc)
 {
 	try{
 		if(isInputValid(aOuterSections))
