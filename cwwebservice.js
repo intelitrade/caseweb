@@ -187,7 +187,7 @@ function buildTreeViewEx(sSectionLabel,oDoc)
 		if(isInputValid(sSectionLabel))
 		{
 			var oContainer = document.getElementById("MainContentContainer");
-			var oSection = oDoc.sectionByName(sSectionLabel);
+			var oSection = oDoc.sectionByName(sSectionLabel); 
 			
 			if(oSection)
 			{
