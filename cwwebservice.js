@@ -121,7 +121,7 @@ function getOuterSections(sSection,oDoc)
 {
 	try
 	{
-		if(sSection!=null && typeof(sSection)!="undefined" && sSection!="")
+		if(isInputValid(sSection))
 		{
 			var aOuterSections = new Array();
 			//iParaIndex = oDoc.curParaIndex();
@@ -151,7 +151,7 @@ function getOuterSections(sSection,oDoc)
 function buildTreeView(aOuterSections)
 {
 	try{
-		if(validateCharString(aOuterSections))
+		if(isInputValid(aOuterSections))
 		{
 			var sHTMLStr = "";
 			for(var i=aOuterSections.length;i>=0;i--)
