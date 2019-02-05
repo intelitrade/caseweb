@@ -157,6 +157,9 @@ function buildTreeView(aOuterSections,oDoc)
 			for(var i=aOuterSections.length;i>=0;i--)
 			{
 				var sOuterSection = aOuterSections[i];
+				if(!isInputValid(sOuterSection))
+					continue;
+				
 				var oOuterSection = oDoc.sectionByName(sOuterSection);
 				if(oOuterSection)
 				{
