@@ -201,41 +201,39 @@ function buildTreeViewEx(sSectionLabel,oDoc)
 					oParentNode.setAttribute("id",sMainSectionId);	
 					oParentNode.appendChild(oParentListItemNode);				
 					oContainer.appendChild(oParentNode);
-				}else{
-
-					var aSubSection = getSubsections(sSectionLabel,oDoc,iSectionIndex);
-					if(isInputValid(aSubSection))
+				}
+				var aSubSection = getSubsections(sSectionLabel,oDoc,iSectionIndex);
+				if(isInputValid(aSubSection))
+				{
+					for(var i=0;i<aSubSection.length;i++)
 					{
-						for(var i=0;i<aSubSection.length;i++)
+						var oSubSection = aSubSection[i];
+						if(isInputValid(oSubSection))
 						{
-							var oSubSection = aSubSection[i];
-							if(isInputValid(oSubSection))
-							{
-								var sSubSection = oSubSection.label;
-								var aOuterSections = getOuterSections(sSubSection,oDoc);
+							var sSubSection = oSubSection.label;
+							var aOuterSections = getOuterSections(sSubSection,oDoc);
 
-								if(validateCharString(aOuterSections))
+							if(validateCharString(aOuterSections))
+							{
+								for(var j=aOuterSections.length;j>=0;j--)
 								{
-									for(var j=aOuterSections.length;j>=0;j--)
+									var sOuterSection = aOuterSections[j];
+									var sHTMLParentElementId = "S"+oOuterSection.index;
+									var oOuterSection = oDoc.sectionByName(sOuterSection);
+									var oHTMLParentElement = document.getElementById(sHTMLParentElementId);
+									if(oOuterSection && oHTMLParentElement)
 									{
-										var sOuterSection = aOuterSections[j];
-										var sHTMLParentElementId = "S"+oOuterSection.index;
-										var oOuterSection = oDoc.sectionByName(sOuterSection);
-										var oHTMLParentElement = document.getElementById(sHTMLParentElementId);
-										if(oOuterSection && oHTMLParentElement)
-										{
-											var oChildNode = document.createElement("UL");
-											var oChildListItemNode = document.createElement("LI");
-											var oChildTextnode = document.createTextNode(sOuterSection);
-											oChildListItemNode.appendChild(oChildTextnode);
-											oChildNode.setAttribute("id",sHTMLParentElementId);	
-											oHTMLParentElement.appendChild(oChildListItemNode);
-											break;
-										}
+										var oChildNode = document.createElement("UL");
+										var oChildListItemNode = document.createElement("LI");
+										var oChildTextnode = document.createTextNode(sOuterSection);
+										oChildListItemNode.appendChild(oChildTextnode);
+										oChildNode.setAttribute("id",sHTMLParentElementId);	
+										oHTMLParentElement.appendChild(oChildListItemNode);
+										break;
 									}
-									buildTreeViewEx(sSubSection,oDoc)
-								}							
-							}
+								}
+								buildTreeViewEx(sSubSection,oDoc)
+							}							
 						}
 					}
 				}
