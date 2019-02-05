@@ -34,6 +34,7 @@ function mytest1(oDoc)
 function getSubsections(sSectionLabel,oDoc,iSectionIndex)
 {
 	try{
+		
 		if (!isInputValid(sSectionLabel)&& iSectionIndex>0)
 		{
 			var oSection = oDoc.Section(iSectionIndex);//Get section object
@@ -52,13 +53,10 @@ function getSubsections(sSectionLabel,oDoc,iSectionIndex)
 			var iSections = oDoc.sectionCount(); //Get the number of sections in a document
 
 			var aSection = new Array(); // Create an array object to hold all first level sections within a specific section
-
-			var k=0; // initialise k - used as a counter for array aSections
 			
 			for (var j=1;j<=iSections;j++) // loop through sections in the document
 			{
 				var oSubSection = oDoc.section(j); // assign sections in the document to oSubSection
-				//if (oSubSection && oSubSection.label!=sSectionLabel) // Check if the section exists in the document and whether it is not the section we are looping in
 				//Much more generic
 				if(oSubSection && oSubSection.index!=oSection.index)
 				{
@@ -161,12 +159,16 @@ function buildTreeView(aOuterSections,oDoc)
 				{
 					continue;
 				}else{
+					
+					
+					var sOuterSection = oOuterSection.label;
 					if(sHTMLStr=="")
 					{
-						sHTMLStr = "<UL><LI>"+oOuterSection.label+"</LI></UL>";
+						sHTMLStr = "<UL><LI>"+sOuterSection+"</LI></UL>";
 					}else{
-						sHTMLStr = "<UL><LI>"+oOuterSection.label+"</LI>"+sHTMLStr+"</UL>";
+						sHTMLStr = "<UL><LI>"+sOuterSection+"</LI>"+sHTMLStr+"</UL>";
 					}
+					// = oOuterSection;
 					/*var sOuterSectionCtype = oOuterSection.propGet("CTYPE");
 					if(sOuterSectionCtype=="NOTECONTROL"||sOuterSectionCtype=="SUBNOTECONTROL"||sOuterSectionCtype=="EXPANDCOLLAPSE"||sOuterSectionCtype=="SUBNOTECONTROLGROUP"||sOuterSectionCtype=="EXPANDCOLLAPSECOMPANY3RDYEAR")
 					{
@@ -196,5 +198,39 @@ function buildTreeView(aOuterSections,oDoc)
 	}finally{
 		
 	}
-	
+}
+
+function buildTreeViewEx(sSection,aSubSections,oDoc)
+{
+	try{
+		if(isInputValid(aOuterSections) && isInputValid(sSection))
+		{
+			var oSection = oDoc.section(sSection);
+			if(oSection)
+			{
+				var oContainer = document.getElementById("MainContentContainer");
+				for (var j=0;j<aSubSection.length;j++)
+				{
+					var oSubSection = aSubSection[j]
+					if (oSubSection)
+					{
+						if( oContainer && oContainer.children.length==0)
+						{
+							var oParentNode = document.createElement("UL");
+							var oChildNode = document.createElement("LI");
+							var oTextnode = document.createTextNode(sSection);
+							oChildNode.appendChild(oTextnode);
+							oParentNode.appendChild(oChildNode);	
+						}else{
+							
+						}
+					}
+				}
+			}
+	}catch(e)
+	{
+		alert(e.description);
+	}finally{
+		
+	}	
 }

@@ -35,8 +35,9 @@
 					debugger;
 					var sSectionLabel = "Main Container (Level 1)";
 					var aSubSections = getSubsections(sSectionLabel,oCaseViewDocument);//,iSectionIndex);
-					var sHTML = buildTreeView(aSubSections,oCaseViewDocument);
-					document.getElementById("demo").innerHTML = sHTML;
+					//var sHTML = buildTreeView(aSubSections,oCaseViewDocument);
+					buildTreeViewEx(sSectionLabel,aSubSections,oDoc);
+					//document.getElementById("demo").innerHTML = sHTML;
 				  }
 				});			
 			}catch(e)
@@ -83,6 +84,6 @@
 		<div id="cwversion"></div>
 		<div id="buildversion"></div>
 
-		<div id="demo">CW & CV Web Solutions Demo</div>
+		<div id="MainContentContainer">CW & CV Web Solutions Demo</div>
 	</body>
 </html>
