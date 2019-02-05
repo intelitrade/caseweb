@@ -196,8 +196,6 @@ function buildTreeViewEx(sSectionLabel,oDoc)
 				var oTextnode = document.createTextNode(sSectionLabel);
 				oParentNode.setAttribute("id",sMainSectionId);				
 				oContainer.appendChild(oParentNode);
-				
-				
 			}
 		}
 	}catch(e)
