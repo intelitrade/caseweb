@@ -115,3 +115,85 @@ function isInputValid(vInput)
 		alert(e.description);
 	}
 }
+
+//Gets all section srrounding the section passed in
+function getOuterSections(sSection,oDoc)
+{
+	try
+	{
+		if(sSection!=null && typeof(sSection)!="undefined" && sSection!="")
+		{
+			var aOuterSections = new Array();
+			//iParaIndex = oDoc.curParaIndex();
+			if (oDoc.sectionByName(sSection))
+			{
+				var iParaIndex = oDoc.sectionByName(sSection).firstParaIndex;
+				var iLastParaIndex = oDoc.sectionByName(sSection).lastParaIndex;
+				
+				for (var i = 1; i <= oDoc.sectionCount; i++)
+				{
+					var oSection = oDoc.section (i);
+
+					if (oSection.firstParaIndex <= iParaIndex && oSection.lastParaIndex >= iLastParaIndex && oSection.label!="" && oSection.label!=sSection)
+					{
+						aOuterSections[aOuterSections.length] = oSection.Label;
+					}
+				}
+			}
+		}
+		return aOuterSections;
+	}catch(e)
+	{
+		alert(e);
+	}
+}
+
+function buildTreeView(aOuterSections)
+{
+	try{
+		if(validateCharString(aOuterSections))
+		{
+			var sHTMLStr = "";
+			for(var i=aOuterSections.length;i>=0;i--)
+			{
+				var sOuterSection = aOuterSections[i];
+				var oOuterSection = oDoc.sectionByName(sOuterSection);
+				if(oOuterSection)
+				{
+					if(sHTMLStr=="")
+					{
+						sHTMLStr = "<UL><LI>"+sOuterSection+"</LI></UL>";
+					}else{
+						sHTMLStr = "<UL><LI>"+sOuterSection+"</LI>"+sHTMLStr+"</UL>";
+					}
+					/*var sOuterSectionCtype = oOuterSection.propGet("CTYPE");
+					if(sOuterSectionCtype=="NOTECONTROL"||sOuterSectionCtype=="SUBNOTECONTROL"||sOuterSectionCtype=="EXPANDCOLLAPSE"||sOuterSectionCtype=="SUBNOTECONTROLGROUP"||sOuterSectionCtype=="EXPANDCOLLAPSECOMPANY3RDYEAR")
+					{
+						aSection[aSection.length]=oOuterSection;
+						//Add the other section within oOuterSection
+						var aReturnSubSection = getSectionInSectionLib(oOuterSection.label,oDoc);
+						//Remoe all sections without a label
+						if(validateCharString(aReturnSubSection))
+						{
+							for(var i=0;i<aReturnSubSection.length;i++)
+							{
+								var oReturnedSection = aReturnSubSection[i];
+								var sReturnedSection = oReturnedSection.label;
+								if(validateCharString(sReturnedSection))
+									aSection[aSection.length] = oReturnedSection; 
+							}
+						}
+						break;
+					}*/
+				}
+			}
+		}
+		return sHTMLStr;
+	}catch(e)
+	{
+		alert(e.description);
+	}finally{
+		
+	}
+	
+}

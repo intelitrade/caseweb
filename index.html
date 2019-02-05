@@ -35,6 +35,8 @@
 					debugger;
 					var sSectionLabel = "BS";
 					var aSubSections = getSubsections(sSectionLabel,oCaseViewDocument);//,iSectionIndex);
+					var sHTML = buildTreeView(aOuterSections);
+					document.getElementById("demo").innerHTML = sHTML;
 				  }
 				});			
 			}catch(e)
