@@ -290,3 +290,68 @@ function getSectionName(oDoc,sSection)
 		alert(e.description);
 	}
 }
+
+//returns all the tables in a section
+function getTableinSection(sSection,oDoc,iSection)
+{
+	try{
+		var aTables = new Array();
+		var sTableName;
+		var sTableCheck =""
+		if (oDoc)
+		{
+			if ((iSection>0 && typeof(iSection)=="integer") || sSection=="")
+			{
+				var oSection = oDoc.section(iSection)	
+			}
+			else
+			{
+				var oSection = oDoc.sectionByName(sSection)
+			}
+		}
+		else
+		{
+			if ((iSection>0 && typeof(iSection)=="integer") || sSection=="")
+			{
+				var oSection = document.section(sSection);
+			}
+			else
+			{
+				var oSection = document.sectionByName(sSection);
+			}
+		}
+		//check if section exits
+		if (oSection)
+		{
+			var iFirstSectIndex = oSection.firstparaIndex
+			var iLastSectIndex = oSection.lastparaIndex
+			for (var j=iFirstSectIndex;j<iLastSectIndex;j++)
+			{
+				if (oDoc)
+				{
+					var oTable = oDoc.tableByParaIndex(j)
+				}
+				else
+				{
+					var oTable = document.tableByParaIndex(j)
+				}
+				if (oTable)
+				{
+					sTableName = oTable.getLabel
+					if (sTableCheck != sTableName)
+					{
+						aTables[aTables.length] = sTableName;
+						sTableCheck = sTableName;
+						j = oTable.lastParaIndex - 1;
+					}
+				}
+			}
+		}
+		return aTables;
+	catch(e)
+	{
+		alert(e.description);
+	}finally{
+		
+	}
+}
