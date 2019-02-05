@@ -9,33 +9,38 @@
         <title>CaseWare & CaseView Web Service</title>
 		<script src="cwwebservice.js"></script>
 		<script>
+			try{
 			debugger;
 			debugger;
-			var params_list = new VBArray(window.dialogArguments);
-			var params = params_list.toArray();
-			var oCaseViewDocument =  params[0];
-			var oCaseWareApp = params[1];
+				var params_list = new VBArray(window.dialogArguments);
+				var params = params_list.toArray();
+				var oCaseViewDocument =  params[0];
+				var oCaseWareApp = params[1];
+				
+				document.attachEvent("onreadystatechange", function(){
+				  // check if the DOM is fully loaded
+				  if(document.readyState === "complete")
+				  {
+					// remove the listener, to make sure it isn't fired in future
+					document.detachEvent("onreadystatechange", arguments.callee);
+					// The actual handler...
+					//var sHTML = mytest1(oCaseViewDocument,document);
+					if(sHTML!="" && sHTML!=null && typeof(sHTML)!="undefined")
+					{
+						document.getElementById("demo").innerHTML = sHTML;
+						document.getElementById("cwversion").innerHTML = "CaseWare Version:"+oCaseWareApp.majorVersion;
+						document.getElementById("buildversion").innerHTML = "Build:"+oCaseWareApp.buildVersion;
+					}
+					var sSectionLabel = "BS";
+					var aSubSections = getSubsections(sSectionLabel,oCaseViewDocument);//,iSectionIndex);
+				  }
+				});			
+			}catch(e)
+			{
+				alert(e.description);
+			}finally{
 			
-			
-			document.attachEvent("onreadystatechange", function(){
-			  // check if the DOM is fully loaded
-			  if(document.readyState === "complete")
-			  {
-				// remove the listener, to make sure it isn't fired in future
-				document.detachEvent("onreadystatechange", arguments.callee);
-				// The actual handler...
-				var sHTML = mytest1(oCaseViewDocument,document);
-				if(sHTML!="" && sHTML!=null && typeof(sHTML)!="undefined")
-				{
-					document.getElementById("demo").innerHTML = sHTML;
-					document.getElementById("cwversion").innerHTML = "CaseWare Version:"+oCaseWareApp.majorVersion;
-					document.getElementById("buildversion").innerHTML = "Build:"+oCaseWareApp.buildVersion;
-				}
-				var sSectionLabel = "BS";
-				var aSubSections = getSubsections(sSectionLabel,oCaseViewDocument)//,iSectionIndex);
-			  }
-			});			
-			
+			}
 			
 			/*if (window.XMLHttpRequest) {
 				// code for modern browsers
@@ -73,13 +78,7 @@
 		<p>Welcome to project CaseWare & CaseView Web Service center.</p>
 		<div id="cwversion"></div>
 		<div id="buildversion"></div>
-		<!--<p><b>Services</b>
-			<ul>
-				<li><a href=#>Update all sections</a></li>
-				<li><a href=#>Export to HTML</a></li>
-				<li><a href=#>Export to PDF</a></li>
-			</ul>
-		</p>-->
+
 		<div id="demo">CW & CV Web Solutions Demo</div>
 	</body>
 </html>
