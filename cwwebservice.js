@@ -210,9 +210,12 @@ function buildTreeViewEx(sSectionLabel,oDoc)
 						var oSubSection = aSubSection[i];
 						if(isInputValid(oSubSection))
 						{
+							var iSubSectionId = "S"+oSubSection.index;
+							if(document.getElementById(iSubSectionId))
+								continue;
+							
 							var sSubSection = oSubSection.label;
 							var aOuterSections = getOuterSections(sSubSection,oDoc);
-							var iSubSectionId = "S"+oSubSection.index;
 							if(isInputValid(aOuterSections))
 							{
 								for(var j=aOuterSections.length;j>=0;j--)
@@ -236,7 +239,7 @@ function buildTreeViewEx(sSectionLabel,oDoc)
 										break;
 									}
 								}
-								buildTreeViewEx(sSubSection,oDoc)
+								buildTreeViewEx(sSubSection,oDoc);
 							}							
 						}
 					}
