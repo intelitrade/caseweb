@@ -24,13 +24,15 @@
 					// remove the listener, to make sure it isn't fired in future
 					document.detachEvent("onreadystatechange", arguments.callee);
 					// The actual handler...
-					//var sHTML = mytest1(oCaseViewDocument,document);
+					var sHTML = mytest1(oCaseViewDocument,document);
 					if(sHTML!="" && sHTML!=null && typeof(sHTML)!="undefined")
 					{
 						document.getElementById("demo").innerHTML = sHTML;
 						document.getElementById("cwversion").innerHTML = "CaseWare Version:"+oCaseWareApp.majorVersion;
 						document.getElementById("buildversion").innerHTML = "Build:"+oCaseWareApp.buildVersion;
 					}
+					debugger;
+					debugger;
 					var sSectionLabel = "BS";
 					var aSubSections = getSubsections(sSectionLabel,oCaseViewDocument);//,iSectionIndex);
 				  }

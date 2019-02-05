@@ -75,7 +75,7 @@ function getSubsections(sSectionLabel,oDoc,iSectionIndex)
 		}
 	}catch(e)
 	{
-		
+		alert(e.description);
 	}finally{
 		
 	}
@@ -91,7 +91,7 @@ function getSectionParaIndexLib(oSection)
 		return aParaIndex;
 	}catch(e)
 	{
-		
+		alert(e.description);
 	}finally{
 		
 	}
@@ -112,6 +112,6 @@ function isInputValid(vInput)
 		return bTrue;		
 	}catch(e)
 	{
-		logError(e);
+		alert(e.description);
 	}
 }
