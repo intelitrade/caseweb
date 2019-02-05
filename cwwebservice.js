@@ -184,7 +184,7 @@ function buildTreeView(aOuterSections,oDoc)
 function buildTreeViewEx(sSectionLabel,aSubSections,oDoc)
 {
 	try{
-		if(isInputValid(aSubSections) && isInputValid(sSection))
+		if(isInputValid(aSubSections) && isInputValid(sSectionLabel))
 		{
 			var oSection = oDoc.sectionByName(sSectionLabel);
 			if(oSection)
@@ -219,8 +219,7 @@ function buildTreeViewEx(sSectionLabel,aSubSections,oDoc)
 							oParentNode.appendChild(oChildNode);	
 							oContainer.appendChild(oParentNode);
 						}else{
-							var aOuterSections = getOuterSections(sSubSectionLabel,oDoc);
-									
+							var aOuterSections = getOuterSections(sSubSectionLabel,oDoc);	
 							if(validateCharString(aOuterSections))
 							{
 								for(var j=aOuterSections.length;j>=0;j--)
