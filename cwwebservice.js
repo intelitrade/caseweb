@@ -235,7 +235,7 @@ function buildTreeViewEx(sSectionLabel,oDoc)
 										break;
 									}
 								}
-								buildTreeViewEx(sSubSection,oDoc)
+								buildTreeViewEx(sSectionLabel,oDoc)
 							}							
 						}
 					}
