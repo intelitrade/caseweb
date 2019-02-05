@@ -197,7 +197,7 @@ function buildTreeViewEx(sSectionLabel,oDoc)
 				oParentListItemNode.appendChild(oTextnode);
 				oParentNode.setAttribute("id",sMainSectionId);	
 				oParentNode.appendChild(oParentListItemNode);				
-				oContainer.appendChild(oParentNode);
+				oContainer.appendChild(oParentNode);	
 			}
 		}
 	}catch(e)
