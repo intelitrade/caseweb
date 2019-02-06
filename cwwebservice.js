@@ -270,7 +270,7 @@ function getSectionName(oDoc,sSection)
 		for (var i=0;i<aTable.length;i++)
 		{
 			var sTable = aTable[i];
-			var oTable = oDoc.getTableByName(sTable);
+			var oTable = oDoc.tableByName(sTable);
 			var sTableType = oTable.propGet(CTABLETYPE);
 			//Get control table
 			//if(sTableType==CONTROL_TABLE | sTableType== SECTIONSUBHEAD_TABLE){
