@@ -30,21 +30,8 @@
 				  {
 					// remove the listener, to make sure it isn't fired in future
 					document.detachEvent("onreadystatechange", arguments.callee);
-					// The actual handler...
-					/*var sHTML = mytest1(oCaseViewDocument,document);
-					if(sHTML!="" && sHTML!=null && typeof(sHTML)!="undefined")
-					{
-						document.getElementById("demo").innerHTML = sHTML;
-						document.getElementById("cwversion").innerHTML = "CaseWare Version:"+oCaseWareApp.majorVersion;
-						document.getElementById("buildversion").innerHTML = "Build:"+oCaseWareApp.buildVersion;
-					}*/
-					debugger;
-					debugger;
-					var sSectionLabel = "NOTES"//"Main Container (Level 1)";
-					//var aSubSections = getSubsections(sSectionLabel,oCaseViewDocument);//,iSectionIndex);
-					//var sHTML = buildTreeView(aSubSections,oCaseViewDocument);
-					buildTreeViewEx(sSectionLabel,oCaseViewDocument);
-					//document.getElementById("demo").innerHTML = sHTML;
+					var sSectionLabel = "NOTES";
+					buildTreeViewEx(sSectionLabel,oCaseViewDocument);					
 				  }
 				});			
 			}catch(e)
@@ -53,44 +40,12 @@
 			}finally{
 			
 			}
-			
-			/*if (window.XMLHttpRequest) {
-				// code for modern browsers
-				xhttp = new XMLHttpRequest();
-			 } else {
-				// code for old IE browsers
-				xhttp = new ActiveXObject("Microsoft.XMLHTTP");
-			}			
-			
-
-			xhttp.onreadystatechange = function() {
-				if (this.readyState == 4 && this.status == 200) {
-				   // Typical action to be performed when the document is ready:
-				   document.getElementById("demo").innerHTML = xhttp.responseText;
-				}
-			};			
-			
-			
-            //var xhr = new XMLHttpRequest();
-            xhttp.open("GET", "http://services.groupkt.com/country/get/all",true);
-			//xhttp.open("GET", "https://jsonplaceholder.typicode.com/photos",true);
-			//xhttp.open("GET", "http://rest-service.guides.spring.io/greeting",true);
-			xhttp.send();
-			//xhr.setRequestHeader("cache-control", "no-cache");
-            //xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-            //xhr.setRequestHeader("accept", "application/json")
-            //xhr.send();
-
-           // var response = xhttp.responseText;
-            //var responseJSON = JSON.parse(response);
-			*/
 		</script>
 	</head>
 	<body>
-		<p>Welcome to project CaseWare & CaseView Web Service center.</p>
+		<div>Welcome <b>CaseWare</b> & <b>CaseView</b> Web Solution Center.</div>
 		<div id="cwversion"></div>
 		<div id="buildversion"></div>
-
 		<div id="MainContentContainer">CW & CV Web Solutions Demo</div>
 	</body>
 </html>
