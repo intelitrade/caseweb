@@ -274,7 +274,7 @@ function getSectionName(oDoc,sSection)
 			var sTableType = oTable.propGet(CTABLETYPE);
 			//Get control table
 			//if(sTableType==CONTROL_TABLE | sTableType== SECTIONSUBHEAD_TABLE){
-			if(sTableType==CONTROL_TABLE || sTableType== SECTIONSUBHEAD_TABLE || SECTIONSUBHEAD_TABLE){
+			if(sTableType==CONTROL_TABLE || sTableType== SECTIONSUBHEAD_TABLE || sTableType = "H2"; ){
 				//var sTable = aTable[i];
 				//Get the section name
 				var oCell = oDoc.cell(sTable+".HEADER");
