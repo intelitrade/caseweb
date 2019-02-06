@@ -259,6 +259,7 @@ function buildTreeViewEx(sSectionLabel,oDoc)
 function getSectionName(oDoc,sSection)
 {
 	try{
+		
 		var CONTROL_TABLE = "PC";
 		var SECTIONHEAD_TABLE = "H1";
 		var SECTIONSUBHEAD_TABLE = "H2";
