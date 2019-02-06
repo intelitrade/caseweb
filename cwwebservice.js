@@ -233,7 +233,7 @@ function buildTreeViewEx(sSectionLabel,oDoc)
 										var oChildNode = document.createElement("UL");
 										var oChildListItemNode = document.createElement("LI");
 										//var oChildTextnode = document.createTextNode(sSubSection);
-										var oChildTextnode = document.createTextNode(getSectionName(oDoc,sSectionLabel));
+										var oChildTextnode = document.createTextNode(getSectionName(oDoc,sSubSection));
 										oChildListItemNode.appendChild(oChildTextnode);
 										oChildNode.setAttribute("id",iSubSectionId);	
 										oChildNode.appendChild(oChildListItemNode);
