@@ -5,26 +5,62 @@
         <meta charset="UTF-8" />
         <meta http-equiv="x-ua-compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, intitial-scale=1" />
-		<link href="https://fonts.googleapis.com/css?family=Dosis:400,700" rel="stylesheet">
-        <title>CaseWare & CaseView Web Service</title>
-		<style>
-			ul, li { list-style: none; }  	
-			li {
-			  border: 1px dotted black;
-			  border-width: 0 0 1px 1px; 
-			}
-		</style>
+        <title>CasWeb (CaseWare & CaseView Web & Desktop Solutions)</title>
 		<script src="cwwebservice.js"></script>
+		<!--<script src="http://localhost:8085/cwwebservice/cwwebservice.js"></script>-->
 		<script>
 			try{
-			debugger;
-			debugger;
+			//debugger;
+			//debugger;
 				var params_list = new VBArray(window.dialogArguments);
 				var params = params_list.toArray();
 				var oCaseViewDocument =  params[0];
 				var oCaseWareApp = params[1];
-				
-				document.attachEvent("onreadystatechange", function(){
+				/*if(document.addEventListener)
+				{ 
+					//alert(2)//document.addEventListener('mousemove', onMouseMove);
+					//debugger;
+					//debugger;
+					document.addEventListener("click", function(){
+						document.getElementById("MainContentContainer").innerHTML = "Hello World";
+						//alert("Test")
+						//debugger;
+						//debugger;
+						var sSectionLabel = "NOTES_002";
+						buildTreeViewEx(sSectionLabel,oCaseViewDocument);
+						//debugger;
+						//debugger;
+					},false);		*/
+
+					//debugger;
+					//debugger;					
+					/*document.addEventListener("onreadystatechange", function(){
+						// check if the DOM is fully loaded
+						if(document.readyState === "complete")
+						{
+							debugger;
+							debugger;
+							// remove the listener, to make sure it isn't fired in future
+							//document.removeEventListener("onreadystatechange", arguments.callee);
+							var sSectionLabel = "NOTES";
+							buildTreeViewEx(sSectionLabel,oCaseViewDocument);					
+						}
+						alert(1)
+					});*/
+				/*}else{
+					//alert(2)//document.attachEvent("onmousemove", onMouseMove);	
+					document.attachEvent("onreadystatechange", function(){
+						// check if the DOM is fully loaded
+						if(document.readyState === "complete")
+						{
+							// remove the listener, to make sure it isn't fired in future
+							document.detachEvent("onreadystatechange", arguments.callee);
+							var sSectionLabel = "NOTES";
+							buildTreeViewEx(sSectionLabel,oCaseViewDocument);					
+						}
+					});					
+				}*/
+				/*document.attachEvent("onreadystatechange", function(){
 				  // check if the DOM is fully loaded
 				  if(document.readyState === "complete")
 				  {
@@ -33,19 +69,79 @@
 					var sSectionLabel = "NOTES";
 					buildTreeViewEx(sSectionLabel,oCaseViewDocument);					
 				  }
-				});			
+				});*/			
+
 			}catch(e)
 			{
 				alert(e.description);
 			}finally{
-			
+				//debugger;
+				//debugger;
 			}
 		</script>
+		<style>
+			/* Main Level */
+			ul{
+				margin-left:5px;
+				padding-left:0px;
+				list-style: none;
+				border: 1px dotted red;
+				border-width: 0 0 0px 1px;				  
+			}
+
+			/* Second Level */
+			ul ul{
+			  margin-left:15px;			 
+			}
+
+			/* Third Level */
+			ul ul ul{
+			  margin-left:15px;
+			}
+			ul ul ul ul{
+			  margin-left:15px;
+			}
+			li{
+				margin-top: 3px;
+				padding-left:5px;
+				border: 1px dotted red;
+				border-width: 0 0 1px 0px;				
+				/*border:1px solid grey;*/
+			}
+			/* and so on... */
+			/*li:before {
+			content: '\1F95E';
+			margin-left: -20px;
+			margin-right: 10px;
+			}*/			
+			/*ul li ul {
+			  display: none;
+			}*/		
+			/*li { padding-left: 1em;
+			  border: 1px dotted black;
+			  border-width: 0 0 0px 1px;
+			}*/			
+			/*ul { padding-left: 1em;
+			  border: 1px dotted black;
+			  border-width: 0 0 1px 1px; 
+			}*/			
+		</style>		
 	</head>
-	<body>
-		<div>Welcome <b>CaseWare</b> & <b>CaseView</b> Web Solution Center.</div>
+	<body style="padding:0px;margin:0px">
+		<div align="center" style="width:100%">
+			<b>Welcome to CaseWeb</b><br>
+			<b>CaseWare & CaseView</b><br>
+			<b>Web & Desktop Solutions</b>
+		</div>
 		<div id="cwversion"></div>
 		<div id="buildversion"></div>
-		<div id="MainContentContainer">CW & CV Web Solutions Demo</div>
+		<div id="MainContentContainer"></div>
 	</body>
 </html>
+<script>
+	var sSectionLabel = "NOTES_002";
+	//var sSectionLabel = "BS";
+	//debugger;
+	//debugger;
+	buildTreeViewEx(sSectionLabel,oCaseViewDocument);
+</script>
