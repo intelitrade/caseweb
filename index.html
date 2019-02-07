@@ -10,67 +10,10 @@
 		<!--<script src="http://localhost:8085/cwwebservice/cwwebservice.js"></script>-->
 		<script>
 			try{
-			//debugger;
-			//debugger;
 				var params_list = new VBArray(window.dialogArguments);
 				var params = params_list.toArray();
 				var oCaseViewDocument =  params[0];
 				var oCaseWareApp = params[1];
-				/*if(document.addEventListener)
-				{ 
-					//alert(2)//document.addEventListener('mousemove', onMouseMove);
-					//debugger;
-					//debugger;
-					document.addEventListener("click", function(){
-						document.getElementById("MainContentContainer").innerHTML = "Hello World";
-						//alert("Test")
-						//debugger;
-						//debugger;
-						var sSectionLabel = "NOTES_002";
-						buildTreeViewEx(sSectionLabel,oCaseViewDocument);
-						//debugger;
-						//debugger;
-					},false);		*/
-
-					//debugger;
-					//debugger;					
-					/*document.addEventListener("onreadystatechange", function(){
-						// check if the DOM is fully loaded
-						if(document.readyState === "complete")
-						{
-							debugger;
-							debugger;
-							// remove the listener, to make sure it isn't fired in future
-							//document.removeEventListener("onreadystatechange", arguments.callee);
-							var sSectionLabel = "NOTES";
-							buildTreeViewEx(sSectionLabel,oCaseViewDocument);					
-						}
-						alert(1)
-					});*/
-				/*}else{
-					//alert(2)//document.attachEvent("onmousemove", onMouseMove);	
-					document.attachEvent("onreadystatechange", function(){
-						// check if the DOM is fully loaded
-						if(document.readyState === "complete")
-						{
-							// remove the listener, to make sure it isn't fired in future
-							document.detachEvent("onreadystatechange", arguments.callee);
-							var sSectionLabel = "NOTES";
-							buildTreeViewEx(sSectionLabel,oCaseViewDocument);					
-						}
-					});					
-				}*/
-				/*document.attachEvent("onreadystatechange", function(){
-				  // check if the DOM is fully loaded
-				  if(document.readyState === "complete")
-				  {
-					// remove the listener, to make sure it isn't fired in future
-					document.detachEvent("onreadystatechange", arguments.callee);
-					var sSectionLabel = "NOTES";
-					buildTreeViewEx(sSectionLabel,oCaseViewDocument);					
-				  }
-				});*/			
-
 			}catch(e)
 			{
 				alert(e.description);
