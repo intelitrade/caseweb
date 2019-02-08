@@ -28,7 +28,6 @@ var AYG_COL	= "AYG"
 var PYG2_COL	= "PYG2" // Second comparative - group
 var PYC2_COL	= "PYC2" // second comparative - company
 
-
 //Row custom properties values
 var CONTROL_ROW			= "RH"; // Control row
 var HEADING_ROW			= "D1"; // Heading row
@@ -72,54 +71,41 @@ var CHEADDEFAULTPRINT		= "CHEADDEFAULTPRINT"
 var CHEADSKIPDEFAULT		= "CHEADSKIPDEFAULT"
 var CACCPOLLINK			= "CACCPOLLINK" //sets which accouting policies are associated with this note
 
-//Row custom properties
-var CROWON			= "CROWON"; //Specifies whether a row has been switched on or not
-var REGNOCHK			= "REGNOCHK";
-var REGNOROW			= "REGNOROW";
-var TRADINGAS			= "TRADINGAS";
-var FORMERNAME			= "FORMERNAME";
-var TRADINGROW			= "TRADINGROW";
-var PAGENOCHK			= "PAGENOCHK";
-var PAGENOCHKF			= "PAGENOCHKF"
-var ENTITYDESC			= "ENTITYDESC";
-var ENTITYNAME			= "ENTITYNAME";
-var YRHEADINGS			= "YRHEADINGS";
-var PERIODROW			= "PERIODROW";
-var PAGENAME			= "PAGENAME";
-var DRILLDOWNFILTER		= "DRLFIL";
-var CROWDEFAULTOFF		= "CROWDEFAULTOFF"//Custom property used to determine if a row will be set on/off by default during the manufacturing process
+// Table custom properties
+var GENERIC_TABLE		= "G2"; // Generic table
+var GENERIC_TABLE_SCHED		= "G5"; // Generic schedules table
+var CONTROL_TABLE		= "PC"; // Controls table
+var SECTIONHEAD_TABLE		= "H1"; // section Header table
+var SECTIONSUBHEAD_TABLE	= "H2"; // section Header table
+var BS_TABLE			= "B1"; // Balance sheet table
+var IS_TABLE			= "I1"; // Income statemment table
+var DETIS_TABLE			= "D1" // Detailed Income Statement table
+var DETIS_SUBTABLE		= "D2" // Detailed income statement subtable
+var CF_TABLE			= "C1"; // Cash flow statement table
+var EQUITY_TABLE		= "E1"; // Statement of changes in equity
+var FARM_TABLE			= "F1"; // Farming table
+var NOTECONTROL_TABLE		= "N1"; // Note number / control table
+var NOTE1_TABLE			= "N2"; // Note type 1 table - Standard note table
+var NOTE2_TABLE			= "N3"; // Note type 2 table - Note Total table
+var NOTE3_TABLE			= "N4"; // Note type 3 table - balance check
+var INVEST_NOTE_TABLE		= "N5"; // Note Investment type table - used in investment to subs, JV's & Associates
+var NOTE9_TABLE			= "N9"; // Note type 9 table - carrying value table
+var HORIZONTAL_NOTE_TABLE	= "N10"; // Horizontal Note table - used in horizontal notes
+var NOTE_HIDE_TABLE		= "N11"; // Hidden note table used for linking
+var NOTE_TOTAL3_TABLE		= "N12"; // as note total  
+var CDIRTABLE			= "CDIRTABLE" //Custom property that indicates if directors table to be sorted
 
-function mytest1(oDoc)
-{
-	try{
-		debugger;
-		debugger;
-		//alert(oDoc.cellCount());
-		var iSectionCount = oDoc.sectionCount();
-		var sPages = ""
-		for(var i=1;i<=iSectionCount;i++)
-		{
-			var oSection = oDoc.section(i);
-			if(oSection && oSection.propExists("CFORMAT")==1)
-			{
-				if(sPages=="")
-				{
-					sPages = "<li>"+oSection.label+"<li>";
-				}else{
-					sPages = sPages + "<li>"+oSection.label+"</li>";
-				}
-			}
-		}
+//table uses
+var MODTABLE			= "MT";	// Table is modifiable and as such has the various controls available, e.g sort rows
+var STATEMENTTABLE		= "ST"; // Statement table e.g. Balance sheet
+var NOTETABLE			= "NO"; // Note Table
+var HEADERCTRL			= "HC"; //Header control table - The following table hold controls associated with the header 
 
-		var sHTMLStr =  "<ul>"+sPages+"</ul>";
-		return sHTMLStr;
-	}catch(e)
-	{
-		
-	}finally{
-		
-	}
-}
+var HEADING_TABLE		= "TH"; //Heading table
+var FOOTER_TABLE		= "FT"; // Footer table
+
+var INDEX_TABLE			= "IT" // Index table	
+
 
 //Get all subsections belonging to a section
 function getSubsections(sSectionLabel,oDoc,iSectionIndex)
@@ -234,40 +220,6 @@ function getOuterSections(sSection,oDoc)
 	}catch(e)
 	{
 		alert(e);
-	}
-}
-
-function buildTreeView(aOuterSections,oDoc)
-{
-	try{
-		if(isInputValid(aOuterSections))
-		{
-			var sHTMLStr = "";
-			for(var i=aOuterSections.length;i>=0;i--)
-			{
-				var oOuterSection = aOuterSections[i];
-				if(!isInputValid(oOuterSection))
-				{
-					continue;
-				}else{
-					
-					
-					var sOuterSection = oOuterSection.label;
-					if(sHTMLStr=="")
-					{
-						sHTMLStr = "<UL><LI>"+sOuterSection+"</LI></UL>";
-					}else{
-						sHTMLStr = "<UL><LI>"+sOuterSection+"</LI>"+sHTMLStr+"</UL>";
-					}
-				}
-			}
-		}
-		return sHTMLStr;
-	}catch(e)
-	{
-		alert(e.description);
-	}finally{
-		
 	}
 }
 
@@ -442,40 +394,6 @@ function getTableTypeDesc(sTableType)
 {
 	try{
 		var sDescription = "";
-		// Table custom properties
-		var GENERIC_TABLE		= "G2"; // Generic table
-		var GENERIC_TABLE_SCHED		= "G5"; // Generic schedules table
-		var CONTROL_TABLE		= "PC"; // Controls table
-		var SECTIONHEAD_TABLE		= "H1"; // section Header table
-		var SECTIONSUBHEAD_TABLE	= "H2"; // section Header table
-		var BS_TABLE			= "B1"; // Balance sheet table
-		var IS_TABLE			= "I1"; // Income statemment table
-		var DETIS_TABLE			= "D1" // Detailed Income Statement table
-		var DETIS_SUBTABLE		= "D2" // Detailed income statement subtable
-		var CF_TABLE			= "C1"; // Cash flow statement table
-		var EQUITY_TABLE		= "E1"; // Statement of changes in equity
-		var FARM_TABLE			= "F1"; // Farming table
-		var NOTECONTROL_TABLE		= "N1"; // Note number / control table
-		var NOTE1_TABLE			= "N2"; // Note type 1 table - Standard note table
-		var NOTE2_TABLE			= "N3"; // Note type 2 table - Note Total table
-		var NOTE3_TABLE			= "N4"; // Note type 3 table - balance check
-		var INVEST_NOTE_TABLE		= "N5"; // Note Investment type table - used in investment to subs, JV's & Associates
-		var NOTE9_TABLE			= "N9"; // Note type 9 table - carrying value table
-		var HORIZONTAL_NOTE_TABLE	= "N10"; // Horizontal Note table - used in horizontal notes
-		var NOTE_HIDE_TABLE		= "N11"; // Hidden note table used for linking
-		var NOTE_TOTAL3_TABLE		= "N12"; // as note total  
-		var CDIRTABLE			= "CDIRTABLE" //Custom property that indicates if directors table to be sorted
-
-		//table uses
-		var MODTABLE			= "MT";	// Table is modifiable and as such has the various controls available, e.g sort rows
-		var STATEMENTTABLE		= "ST"; // Statement table e.g. Balance sheet
-		var NOTETABLE			= "NO"; // Note Table
-		var HEADERCTRL			= "HC"; //Header control table - The following table hold controls associated with the header 
-
-		var HEADING_TABLE		= "TH"; //Heading table
-		var FOOTER_TABLE		= "FT"; // Footer table
-
-		var INDEX_TABLE			= "IT" // Index table	
 
 		switch(sTableType)
 		{
@@ -579,6 +497,144 @@ function getTableTypeDesc(sTableType)
 	}
 }
 
+function getRowTypeDesc(sRowType)
+{
+	try{
+		var sDescription = "";
+
+		switch(sRowType)
+		{
+			case CONTROL_ROW:
+				sDescription = "Control row";
+				break;
+			case HEADING_ROW:
+				sDescription = "Generic schedules table";
+				break;
+			case SUBHEADING_ROW:
+				sDescription = "Subheading row";
+				break;
+			case CALC1_ROW:
+				sDescription = "Calculation row  [grp]	->	grp(c1,ayg,entity(groupid,rc(-4)))";
+				break;			
+			case CALC2_ROW:
+				sDescription = "Calculation row  [-grp]	->	-grp(c1,ayg,entity(groupid,rc(-4)))";
+				break;			
+			case CALC3_ROW:
+				sDescription = "Calculation row [grpent,1]	->	grpent(c1,ayg,entity(groupid,rc(-4)),1)";
+				break;			
+			case CALC4_ROW:
+				sDescription = "Calculation row [grpent,-1]	->	grpent(c1,ayg,entity(groupid,rc(-4)),-1)";
+				break;			
+			case CALC5_ROW:
+				sDescription = "Cell reference calculation row / Multiple calculation row";
+				break;
+			case CALC6_ROW	:
+				sDescription = "[grp] with Description based on map col less last 4 characters used in PPEV recon note";
+				break;
+			case CALC7_ROW:
+				sDescription = "[grp] with additional terms and conditions paragraph below";
+				break;
+			case CALC8_ROW:
+				sDescription = "pos of grp calcultion";
+				break;
+			case CALC9_ROW:
+				sDescription = "pos of -grp calculation";
+				break;
+			case CALC10_ROW:
+				sDescription = "Movement calculation - PY - CY";
+				break;
+			case CALCB_ROW:
+				sDescription = "PY value pulls through to the CY col. PY col is input";
+				break;
+			case CALCC_ROW:
+				sDescription = "Movement calculation - PY - CY -- Negative";
+				break;			
+			case INPUT_ROW:
+				sDescription = "Input row";
+				break;
+			case TEXTONLY_ROW:
+				sDescription = "Text only row - skips if row above is skipped";
+				break;
+			case TEXTCALC1_ROW:
+				sDescription = "Input row with opening balance being last years total";
+				break;
+			case INPUTPERCENT_ROW:
+				sDescription = "Input row with percentage columns";
+				break;			
+			case INPUTROLLFORWARD_ROW:
+				sDescription = "Input row roll forward to PY";
+				break;
+			case INPUTDESCNOT_ROW:
+				sDescription = "Input row, description columns not input";
+				break;
+			case INPUTBULLET_ROW:
+				sDescription = "Input row with bullet, description pulls through from Map number";
+				break;
+			case INPUTTOTAL_ROW:
+				sDescription = "Input row with last column being a total of other 3 columns";
+				break;
+			case INPUTANDTEXT_ROW:
+				sDescription = "Input row with additional paragraph input text";
+				break;
+			//table uses
+			case ACTCALC1_ROW:
+				sDescription = "Calculation row pulling through from account numbers";
+				break;
+			case ACTCALC2_ROW:
+				sDescription = "Negative Calculation row pulling through from account numbers";
+				break;
+			case SUBTOTAL_ROW:
+				sDescription = "Subtotal row";
+				break;
+			case THINLINE_ROW:
+				sDescription = "Thin line row";
+				break;
+			case THINKLINE_ROW:
+				sDescription = "Thick line row";
+				break;
+			case TOTAL_ROW:
+				sDescription = "Total row";
+				break;
+			case LINKTOTAL_ROW:
+				sDescription = "Total row with linkage";
+				break;
+			case LINKSUBTOTAL_ROW:
+				sDescription = "Total row based on row position in other tables";
+				break;				
+			case LINKTOTALSKIP_ROW:
+				sDescription = "Total row with linkage --Always skipped and hidden";
+				break;
+			case YEARHEADER_ROW:
+				sDescription = "Year heading row";
+				break;
+			case NOTE_ROW:
+				sDescription = "Note linkage row";
+				break;
+			case PAGEBREAK_ROW:
+				sDescription = "Page break row";
+				break;
+			case BALCHK_ROW:
+				sDescription = "Balance check row";
+				break;
+			case CHEADDEFAULTPRINT:
+				sDescription = "";
+				break;
+			case CHEADSKIPDEFAULT:
+				sDescription = "";
+				break;
+			case CACCPOLLINK:
+				sDescription = "sets which accouting policies are associated with this note";
+				break;			
+			}
+		return sDescription;
+	}catch(e)
+	{
+		alert(e.description);
+	}finally{
+		
+	}
+}
+
 function getTableData(oDoc,oSection)
 {
 	try{
@@ -602,7 +658,7 @@ function getTableData(oDoc,oSection)
 				
 				var sTableStr = getTableLineItems(oTable,sTableType,sSection,iSectionSkipCond,oDoc);
 				if(isInputValid(sTableStr))
-					sStr = "<li jumpcode='"+sSection+"' onclick='gotoSection(this);' title='Component: Table row\nRow type: HEADING_ROW\nTable name: "+sTable+"\nTable type: "+sTableType+"\nTable desc: "+sTableTypeDesc+"'> Column header row</li><li style='color:"+sColor+";' jumpcode='"+sSection+"' onclick='gotoSection(this);' title='Component: Table row\nRow type: HEADING_ROW\nTable name: "+sTable+"\nTable type: "+sTableType+"\nTable desc: "+sTableTypeDesc+"'>Column mapping row</li>"+sTableStr;	
+					sStr = "<li jumpcode='"+sSection+"' onclick='gotoSection(this);' title='Component: Table row\nRow type: HEADING_ROW\nRow desc: Column heading row\nTable name: "+sTable+"\nTable type: "+sTableType+"\nTable desc: "+sTableTypeDesc+"'>[Column header row]</li><li style='color:"+sColor+";' jumpcode='"+sSection+"' onclick='gotoSection(this);' title='Component: Table row\nRow type: HEADING_ROW\nRow desc: Column mapping row\nTable name: "+sTable+"\nTable type: "+sTableType+"\nTable desc: "+sTableTypeDesc+"'>[Column mapping row]</li>"+sTableStr;	
 			}
 		}
 		return sStr;
@@ -843,8 +899,10 @@ function getTableLineItems(oTable,sTableType,sSectionLabel,iSectionSkipCond,oDoc
 						var sGUIDID = createGuid();
 						oRow.propSet("TEMPGUID") = sGUIDID;
 					}
+					var sRowType = oRow.propGet(CROWTYPE);
+					var sRowTypeDesc = getRowTypeDesc(sRowType)
 					
-					if(oRow.propGet(CROWTYPE)===TEXTONLY_ROW)
+					if(sRowType===TEXTONLY_ROW)
 					{
 						//debugger;
 						//debugger;
@@ -867,9 +925,9 @@ function getTableLineItems(oTable,sTableType,sSectionLabel,iSectionSkipCond,oDoc
 						{
 							if(sGUIDID!="")
 							{
-								sString = sString + "<li style='background-color:#CCFFCC;color:"+sColor+";' component='para' paraindex='"+oPara.index+"' jumpcode='"+sSectionLabel+"' onclick='gotoSection(this);' guid='"+sGuid+"'  id='row_"+sGuid+"' tempguid='"+sGUIDID+"' tablename='"+sTableName+"' objecttype='row' title='Table name: "+sTableName+"\nTable type: "+sTableType+"\nTable desc: "+sTableTypeDesc+"'><span>["+sDesc+"]</span></li>";								
+								sString = sString + "<li style='background-color:#CCFFCC;color:"+sColor+";' component='para' paraindex='"+oPara.index+"' jumpcode='"+sSectionLabel+"' onclick='gotoSection(this);' guid='"+sGuid+"'  id='row_"+sGuid+"' tempguid='"+sGUIDID+"' tablename='"+sTableName+"' objecttype='row' title='Component: Table row\nRow type: "+sRowType+"\nRow type desc: "+sRowTypeDesc+"\nTable name: "+sTableName+"\nTable type: "+sTableType+"\nTable desc: "+sTableTypeDesc+"'><span>["+sDesc+"]</span></li>";								
 							}else{
-								sString = sString + "<li style='display:table-cell;background-color:#CCFFCC;color:"+sColor+";' component='para' paraindex='"+oPara.index+"' jumpcode='"+sSectionLabel+"' onclick='gotoSection(this);' guid='"+sGuid+"'  id='row_"+sGuid+"' tablename='"+sTableName+"' objecttype='row' title='Component: Table row\nTable name: "+sTableName+"\nTable type: "+sTableType+"\nTable desc: "+sTableTypeDesc+"'><span>["+sDesc+"]</span></li>";
+								sString = sString + "<li style='display:table-cell;background-color:#CCFFCC;color:"+sColor+";' component='para' paraindex='"+oPara.index+"' jumpcode='"+sSectionLabel+"' onclick='gotoSection(this);' guid='"+sGuid+"'  id='row_"+sGuid+"' tablename='"+sTableName+"' objecttype='row' title='Component: Table row\nRow type: "+sRowType+"\nRow type desc: "+sRowTypeDesc+"\nTable name: "+sTableName+"\nTable type: "+sTableType+"\nTable desc: "+sTableTypeDesc+"'><span>["+sDesc+"]</span></li>";
 							}
 						}
 					}else
@@ -887,17 +945,17 @@ function getTableLineItems(oTable,sTableType,sSectionLabel,iSectionSkipCond,oDoc
 								//Check if the cell is input or not							
 								if (oDescCell.input===1)
 								{
-									sString = sString + "<li style='background-color:#FFFFC6;color:"+sColor+"' component='row' cellnumber='"+oDescCell.number+"' guid='"+sGuid+"' tempguid='"+sGUIDID+"' mapcolumn='"+sMapCol+"' tablename='"+sTableName+"'  jumpcode='"+sSectionLabel+"' onclick='gotoSection(this);' id='row_"+sGuid+"' objecttype='row' title='Component: Table row\nTable name: "+sTableName+"\nTable type: "+sTableType+"\nTable desc: "+sTableTypeDesc+"'><span>["+sDesc+"]</span></li>";								
+									sString = sString + "<li style='background-color:#FFFFC6;color:"+sColor+"' component='row' cellnumber='"+oDescCell.number+"' guid='"+sGuid+"' tempguid='"+sGUIDID+"' mapcolumn='"+sMapCol+"' tablename='"+sTableName+"'  jumpcode='"+sSectionLabel+"' onclick='gotoSection(this);' id='row_"+sGuid+"' objecttype='row' title='Component: Table row\nRow type: "+sRowType+"\nRow type desc: "+sRowTypeDesc+"\nTable name: "+sTableName+"\nTable type: "+sTableType+"\nTable desc: "+sTableTypeDesc+"'><span>["+sDesc+"]</span></li>";								
 								}else{
-									sString = sString + "<li style='color:"+sColor+";' component='row' cellnumber='"+oDescCell.number+"' guid='"+sGuid+"' mapcolumn='"+sMapCol+"' tempguid='"+sGUIDID+"' tablename='"+sTableName+"' jumpcode='"+sSectionLabel+"' onclick='gotoSection(this);' id='row_"+sGuid+"' objecttype='row' title='Component: Table row\nTable name: "+sTableName+"\nTable type: "+sTableType+"\nTable desc: "+sTableTypeDesc+"'><span>["+sDesc+"]</span></li>";	
+									sString = sString + "<li style='color:"+sColor+";' component='row' cellnumber='"+oDescCell.number+"' guid='"+sGuid+"' mapcolumn='"+sMapCol+"' tempguid='"+sGUIDID+"' tablename='"+sTableName+"' jumpcode='"+sSectionLabel+"' onclick='gotoSection(this);' id='row_"+sGuid+"' objecttype='row' title='Component: Table row\nRow type: "+sRowType+"\nRow type desc: "+sRowTypeDesc+"\nTable name: "+sTableName+"\nTable type: "+sTableType+"\nTable desc: "+sTableTypeDesc+"'><span>["+sDesc+"]</span></li>";	
 								}
 							}else{
 								//Check if the cell is input or not							
 								if (oDescCell.input===1)
 								{
-									sString = sString + "<li style='background-color:#FFFFC6;color:"+sColor+";' component='row' cellnumber='"+oDescCell.number+"' guid='"+sGuid+"' mapcolumn='"+sMapCol+"' tablename='"+sTableName+"' jumpcode='"+sSectionLabel+"' onclick='gotoSection(this);' id='row_"+sGuid+"' objecttype='row' title='Component: Table row\nTable name: "+sTableName+"\nTable type: "+sTableType+"\nTable desc: "+sTableTypeDesc+"'><span>["+sDesc+"]</span></li>";								
+									sString = sString + "<li style='background-color:#FFFFC6;color:"+sColor+";' component='row' cellnumber='"+oDescCell.number+"' guid='"+sGuid+"' mapcolumn='"+sMapCol+"' tablename='"+sTableName+"' jumpcode='"+sSectionLabel+"' onclick='gotoSection(this);' id='row_"+sGuid+"' objecttype='row' title='Component: Table row\nRow type: "+sRowType+"\nRow type desc: "+sRowTypeDesc+"\nTable name: "+sTableName+"\nTable type: "+sTableType+"\nTable desc: "+sTableTypeDesc+"'><span>["+sDesc+"]</span></li>";								
 								}else{
-									sString = sString + "<li style='display:table-cell;color:"+sColor+";' component='row' cellnumber='"+oDescCell.number+"' guid='"+sGuid+"' mapcolumn='"+sMapCol+"' tablename='"+sTableName+"' jumpcode='"+sSectionLabel+"' onclick='gotoSection(this);' id='row_"+sGuid+"' objecttype='row' title='Component: Table row\nTable name: "+sTableName+"\nTable type: "+sTableType+"\nTable desc: "+sTableTypeDesc+"'><span>["+sDesc+"]</span></li>";	
+									sString = sString + "<li style='display:table-cell;color:"+sColor+";' component='row' cellnumber='"+oDescCell.number+"' guid='"+sGuid+"' mapcolumn='"+sMapCol+"' tablename='"+sTableName+"' jumpcode='"+sSectionLabel+"' onclick='gotoSection(this);' id='row_"+sGuid+"' objecttype='row' title='Component: Table row\nRow type: "+sRowType+"\nRow type desc: "+sRowTypeDesc+"\nTable name: "+sTableName+"\nTable type: "+sTableType+"\nTable desc: "+sTableTypeDesc+"'><span>["+sDesc+"]</span></li>";	
 								}								
 							}
 						}						
@@ -1099,4 +1157,4 @@ var converted = testCase.map(function(obj) {
 
 });
 
-*/ 
+*/
