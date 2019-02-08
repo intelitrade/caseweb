@@ -321,7 +321,6 @@ function buildTreeViewEx(sSectionLabel,oDoc)
 											sColor = '#000000';
 										
 										
-										
 										if(sCtypeVal=="NOTECONTROL"||sCtypeVal=="SUBNOTECONTROL"||sCtypeVal=="EXPANDCOLLAPSE"||sCtypeVal=="SUBNOTECONTROLGROUP"||sCtypeVal=="EXPANDCOLLAPSECOMPANY3RDYEAR")
 										{
 											oChildListItemNode.setAttribute("jumpcode",sSubSection);
