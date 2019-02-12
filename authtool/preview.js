@@ -456,10 +456,12 @@ function updatePreviewPane(oElement)
 		}
 		var oEditorPane = document.getElementById("editorPane").innerHTML = sStr;
 		var sTable = oElement.getAttribute("tablename");
+		
 		debugger;
 		debugger;
 		if(isInputValid(sTable))
 			previewDocument(sTable);
+		
 	}catch(e)
 	{
 		logError(e);
