@@ -1,8 +1,6 @@
 function updatePreviewPane(oElement)
 {
 	try{
-		//debugger;
-		//debugger;  
 		var sStr = "";
 		
 		//Clear the editor pane
