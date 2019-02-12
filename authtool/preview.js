@@ -455,7 +455,9 @@ function updatePreviewPane(oElement)
 			sStr = sStr +'</table>';				
 		}
 		var oEditorPane = document.getElementById("editorPane").innerHTML = sStr;
-
+		var sTable = oElement.getAttribute("tablename");
+		if(isInputValid(sTable))
+			previewDocument(sTable);
 	}catch(e)
 	{
 		logError(e);
@@ -464,7 +466,7 @@ function updatePreviewPane(oElement)
 	}
 }
 
-function previewDocument()
+function previewDocument(sCVTableName)
 {
 	try{
 		//document.getElementById("editorPane").innerHTML = '<table width="100%" height="100%"><tr><td width="100%" height="100%" align="center"><p><b>Select Item on the left to view / modify its properties</b></p><object width="100%" height="400" data="PWC Illustrative Financial Statements 2013 - Financial statements - IFRS.pdf"></object></td></tr></table>';
