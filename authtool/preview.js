@@ -504,8 +504,8 @@ function previewDocument()
 function addCVTableDataToHTMLTable(sCVTableName, sHTMLTableId)
 {
 	try{
-		debugger;
-		debugger;
+		//debugger;
+		//debugger;
 		if(oDoc)
 		{
 			var oCVTable = oDoc.tableByName(sCVTableName);
