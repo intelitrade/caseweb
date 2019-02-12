@@ -191,6 +191,7 @@ function isInputValid(vInput)
 	}
 }
 
+
 //Gets all section srrounding the section passed in
 function getOuterSections(sSection,oDoc)
 {

@@ -147,8 +147,6 @@
 	<script language="javascript" src="caseweb.js"></script>
 	<!--<script language="javascript" src="http://localhost:8085/authtool/caseweb.js"></script>-->
 	<!--<script language="javascript" src="https://intelitrade.github.io/caseweb/authtool/caseweb.js"></script>-->
-	
-
 	<script>
 	document.onmouseup = mouseUp;
 	</script>
@@ -233,7 +231,7 @@
 					<div id="" style="background-color:#008CBA;color:#FFFFFF;width:100%;font-weight:bold;text-align:center;height:40px">
 						Details / Preview<br>Select an item in the "Edit options" panel to view / modify its properties
 					</div>	
-					<div style="overflow-y: auto;height:500px;width:100%;padding-left:5px" id="editorPaneold">
+					<div style="overflow-y: auto;height:500px;width:100%;padding-left:5px;" id="editorPaneold">
 						<table width="100%" height="100%">
 							<tr>
 								<td width="100%" height="100%" id="editorPane">
@@ -268,8 +266,6 @@
 	//debugger;
 	//debugger;	
 	//var iLoadProgBar = 1
-	//debugger;
-	//debugger;
 	var oProgBar = oDoc.createProgressBar("Loading data...",1,1);
 	
 		if(sCType=="NOTECONTROL"||sCType=="SUBNOTECONTROL"||sCType=="EXPANDCOLLAPSE"||sCType=="SUBNOTECONTROLGROUP"||sCType=="EXPANDCOLLAPSECOMPANY3RDYEAR")
@@ -282,18 +278,12 @@
 		buildTreeViewEx(sSectionLabel,oDoc);//,oProgBar);
 	oProgBar.updateProgress(1);	
 	oProgBar.destroyProgressBar();	
-	//debugger;
-	//debugger;
 	}catch(e)
 	{
 		alert(e.description);
 	}finally
 	{
-		if(oProgBar)
-		{
-		//	oProgBar.destroyProgressBar();
-		}
-		//oProgBar = null;
+
 	}
 	
 	function getCorrectContainer(sSectionLabel)
