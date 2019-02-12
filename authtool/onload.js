@@ -36,7 +36,7 @@ function loadDocMapDataEx()
 		}
 		
 		var sMainSectionName = getMainSectionHeaderName();
-		if(isInputValid(sMainSectionName))
+		if(validateCharString(sMainSectionName))
 		{
 			document.getElementById("docmapheading").innerHTML = "Edit options<br>"+sMainSectionName;
 		}				
@@ -48,14 +48,14 @@ function loadDocMapDataEx()
 
 		var aReturnSubSection = getSectionInSectionLib(sClosestSection,oDoc);
 		//Remoe all sections without a label
-		if(isInputValid(aReturnSubSection))
+		if(validateCharString(aReturnSubSection))
 		{
 			for(var i=0;i<aReturnSubSection.length;i++)
 			{
 				var oReturnedSection = aReturnSubSection[i];
 				var sReturnedSection = oReturnedSection.label;
 				
-				if(isInputValid(sReturnedSection)||oReturnedSection.propExists("CTYPE")==1)
+				if(validateCharString(sReturnedSection)||oReturnedSection.propExists("CTYPE")==1)
 					aSection[aSection.length] = oReturnedSection; 
 			}
 		}
@@ -66,7 +66,7 @@ function loadDocMapDataEx()
 			//get the family tree of the section and start going up the tree to get the name
 			//this might not be the case with content that has just been added
 			var aOuterSections = getSectionFamilyTreeLib(sClosestSection,oDoc);
-			if(isInputValid(aOuterSections))
+			if(validateCharString(aOuterSections))
 			{
 				for(var i=aOuterSections.length;i>=0;i--)
 				{
@@ -81,13 +81,13 @@ function loadDocMapDataEx()
 							//Add the other section within oOuterSection
 							var aReturnSubSection = getSectionInSectionLib(oOuterSection.label,oDoc);
 							//Remoe all sections without a label
-							if(isInputValid(aReturnSubSection))
+							if(validateCharString(aReturnSubSection))
 							{
 								for(var i=0;i<aReturnSubSection.length;i++)
 								{
 									var oReturnedSection = aReturnSubSection[i];
 									var sReturnedSection = oReturnedSection.label;
-									if(isInputValid(sReturnedSection))
+									if(validateCharString(sReturnedSection))
 										aSection[aSection.length] = oReturnedSection; 
 								}
 							}
@@ -107,7 +107,7 @@ function loadDocMapDataEx()
 			//get the family tree of the section and start going up the tree to get the name
 			//this might not be the case with content that has just been added
 			var aOuterSections = getSectionFamilyTreeLib(oFirstSubSection.label,oDoc);
-			if(isInputValid(aOuterSections))
+			if(validateCharString(aOuterSections))
 			{
 				for(var i=aOuterSections.length;i>=0;i--)
 				{
@@ -145,7 +145,7 @@ function loadDocMapDataEx()
 
 				var sCtypeVal = oInnerSection.propGet("CTYPE");
 				var aHeaderProperties  = getSectionTitle(sLabel);
-				if(isInputValid(aHeaderProperties))
+				if(validateCharString(aHeaderProperties))
 					sTitle = aHeaderProperties[0];
 				
 				var iSectionSkipCond = oInnerSection.evaluateSkip();
@@ -164,7 +164,7 @@ function loadDocMapDataEx()
 				{
 					//Get table in section
 					var aTable = getTableinSection(sLabel,oDoc);
-					if(isInputValid(aTable))
+					if(validateCharString(aTable))
 					{
 						var sTable = aTable[0];
 						var oTable = oDoc.tableByName(sTable);
@@ -193,7 +193,7 @@ function loadDocMapDataEx()
 					else
 						var sColor = '#000000';
 					
-					if(!isInputValid(sParaText))
+					if(!validateCharString(sParaText))
 						sParaText = "Paragraph text";
 					else{
 						var iTextLength = sParaText.length;

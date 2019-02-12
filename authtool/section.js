@@ -7,19 +7,19 @@ function getSectionTitle(sSection)
 		if(oSection && oSection.propExists(CSECTIONCONTROL))
 		{
 			sSectionName = getSectionName(oDoc, sSection);
-			if (isInputValid((sSectionName) && sSectionName != "Section name")) {
+			if (validateCharString(sSectionName) && sSectionName != "Section name") {
 				//return sSectionName;
 			}else{
 				//get the family tree of the section and start going up the tree to get the name
 				//this might not be the case with content that has just been added
 				var aOuterSections = getSectionFamilyTreeLib(sSection,oDoc);
-				if(isInputValid(aOuterSections))
+				if(validateCharString(aOuterSections))
 				{
 					for(var i=aOuterSections.length;i>=0;i--)
 					{
 						sSection = aOuterSections[i];
 						sSectionName = getSectionTitle(sSection);
-						if (isInputValid(sSectionName) && sSectionName != "Section name") {
+						if (validateCharString(sSectionName) && sSectionName != "Section name") {
 							break;//return sSectionName;
 						}
 					}
@@ -31,7 +31,7 @@ function getSectionTitle(sSection)
 		return aResult[aResult.length] = [sSectionName,sHeaderCell];
 	}catch(e)
 	{
-		alert(e.description);
+		logError(e);
 	}finally{
 		oSection = null;
 		oCircleList = null;
@@ -45,7 +45,7 @@ function getHeaderCellInSection(sSection,sSectionName)
 	try{
 		var aTable = getTableinSection(sSection,oDoc);
 		var sCellName = "";
-		if(isInputValid(aTable))
+		if(validateCharString(aTable))
 		{
 			for(i=0;i<aTable.length;i++)
 			{
@@ -62,7 +62,7 @@ function getHeaderCellInSection(sSection,sSectionName)
 		return sCellName;
 	}catch(e)
 	{
-		alert(e.description);
+		logError(e);
 	}finally{
 		oCell = null;
 	}
@@ -74,17 +74,17 @@ function getClosestSectionWithCtype(sSection)
 		//get the family tree of the section and start going up the tree to get the name
 		//this might not be the case with content that has just been added
 		var sSectionName = getSectionName(oDoc, sSection);
-		if (isInputValid(sSectionName) && sSectionName != "Section name") {
+		if (validateCharString(sSectionName) && sSectionName != "Section name") {
 			//return sSectionName;
 		}else{
 			var aOuterSections = getSectionFamilyTreeLib(sSection,oDoc);
-			if(isInputValid(aOuterSections))
+			if(validateCharString(aOuterSections))
 			{
 				for(var i=aOuterSections.length;i>=0;i--)
 				{
 					sSection = aOuterSections[i];
 					sSectionName = getSectionTitle(sSection);
-					if (isInputValid(sSectionName) && sSectionName != "Section name")
+					if (validateCharString(sSectionName) && sSectionName != "Section name")
 					{
 						break;
 					}
@@ -94,7 +94,7 @@ function getClosestSectionWithCtype(sSection)
 		return sSectionName; 			
 	}catch(e)
 	{
-		alert(e.description);
+		logError(e);
 	}finally{
 		aOuterSections = null;
 	}
@@ -125,7 +125,7 @@ function getMainSectionHeaderName()
 		return sSectionName;
 	}catch(e)
 	{
-		alert(e.description);
+		logError(e);
 	}finally{
 		
 	}
@@ -137,7 +137,7 @@ function getSubSectionName(sSection)
 		//debugger;
 		//debugger;
 		var sSectionLabel="";
-		if(isInputValid(sSection))
+		if(validateCharString(sSection))
 		{
 			var oSection = oDoc.sectionByName(sSection);
 			sSectionLabel = sSection;
@@ -166,7 +166,7 @@ function getSubSectionName(sSection)
 		return sSectionName;
 	}catch(e)
 	{
-		alert(e.description);
+		logError(e);
 	}finally{
 		
 	}
@@ -180,7 +180,7 @@ function updateSectionHeader(oElement)
 		var sSection = oElement.getAttribute("sectionlabel");
 		var aTable = getTableinSection(sSection,oDoc);
 		var sCellName = "";
-		if(isInputValid(aTable))
+		if(validateCharString(aTable))
 		{
 			for(i=0;i<aTable.length;i++)
 			{
@@ -197,7 +197,7 @@ function updateSectionHeader(oElement)
 		}			
 	}catch(e)
 	{
-		alert(e.description);
+		logError(e);
 	}finally{
 		
 	}
@@ -218,7 +218,7 @@ function updateTextSection(oElement)
 		oDoc.recalculate(0);
 	}catch(e)
 	{
-		alert(e.description);
+		logError(e);
 	}finally{
 		oElement = null;
 	}

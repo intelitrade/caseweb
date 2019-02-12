@@ -117,21 +117,27 @@
 	li:hover {background-color: #ddd;}
 	</style>
 	<script>
-		//debugger;
-		//debugger;
-		var params_list = new VBArray(window.dialogArguments);
-		var params = params_list.toArray();
-		var oDoc =  params[0];
-		var oCWApplication = params[1];
-		var sClosestSection = params[2];
-		var sCType = params[3];
-		//var oSortGroups = new ActiveXObject("Scripting.Dictionary");				
+	//debugger;
+	//debugger;
+	var params_list = new VBArray(window.dialogArguments);
+	var params = params_list.toArray();
+	var oDoc =  params[0];
+	var sClosestSection = params[1];
+	var oSortGroups = new ActiveXObject("Scripting.Dictionary");		
+		
 		/*	
 			Force window to come to the fore/front
 			This should resolve the issue of the window being in the background when it has loaded
 		*/
 		window.focus();
 	</script>
+	<!--<SCRIPT language="javascript" src="../CQS_IFRS_Style.scp"></SCRIPT>-->
+	<!--<SCRIPT language="javascript" src="../CQS_PUBLIC_VAR.scp"></SCRIPT>
+	<SCRIPT language="javascript" src="../CQS_ObjectLib.scp"></SCRIPT>-->
+	<!--<SCRIPT language="javascript" src="../CQS_IFRSLib.scp"></SCRIPT>-->
+	<!--<SCRIPT language="javascript" src="../CQS_IFRS_Style.scp"></SCRIPT>-->
+	<!--<SCRIPT language="javascript" src="../CQSJlib.scp"></SCRIPT>-->
+	<!--<SCRIPT language="javascript" src="../CQS_IFRS.scp"></SCRIPT>-->
 	<SCRIPT language="javascript" src="publicvariables.js"></SCRIPT>
 	<SCRIPT language="javascript" src="authtool.js"></SCRIPT>
 	<SCRIPT language="javascript" src="dragndrop.js"></SCRIPT>
@@ -144,11 +150,7 @@
 	<SCRIPT language="javascript" src="section.js"></SCRIPT>
 	<SCRIPT language="javascript" src="storage.js"></SCRIPT>
 	<SCRIPT language="javascript" src="eventhandler.js"></SCRIPT>
-	<script language="javascript" src="caseweb.js"></script>
-	<!--<script language="javascript" src="http://localhost:8085/authtool/caseweb.js"></script>-->
-	<!--<script language="javascript" src="https://intelitrade.github.io/caseweb/authtool/caseweb.js"></script>-->
-	
-	
+	<script src="http://localhost:8085/cwwebservice/caseweb.js"></script>
 	<script>
 	document.onmouseup = mouseUp;
 	</script>
@@ -271,14 +273,7 @@
 	//debugger;
 	//debugger;
 	var oProgBar = oDoc.createProgressBar("Loading data...",1,1);
-	
-		if(sCType=="NOTECONTROL"||sCType=="SUBNOTECONTROL"||sCType=="EXPANDCOLLAPSE"||sCType=="SUBNOTECONTROLGROUP"||sCType=="EXPANDCOLLAPSECOMPANY3RDYEAR")
-		{
-			var sSectionLabel = sClosestSection;//"NOTES_002";
-			
-		}else{
-			var sSectionLabel = sClosestSection = getCorrectContainer(sClosestSection);
-		}
+		var sSectionLabel = "NOTES_002";
 		buildTreeViewEx(sSectionLabel,oDoc);//,oProgBar);
 	oProgBar.updateProgress(1);	
 	oProgBar.destroyProgressBar();	
@@ -295,32 +290,4 @@
 		}
 		//oProgBar = null;
 	}
-	
-	function getCorrectContainer(sSectionLabel)
-	{
-		//get the family tree of the section and start going up the tree to get the name
-		//this might not be the case with content that has just been added
-		var aOuterSections = getOuterSections(sSectionLabel,oDoc);
-		if(isInputValid(aOuterSections))
-		{
-			for(var i=aOuterSections.length;i>=0;i--)
-			{
-				var sOuterSection = aOuterSections[i];
-				var oOuterSection = oDoc.sectionByName(sOuterSection);
-				if(oOuterSection)
-				{
-					var sOuterSectionCtype = oOuterSection.propGet("CTYPE");
-					if(sOuterSectionCtype=="NOTECONTROL"||sOuterSectionCtype=="SUBNOTECONTROL"||sOuterSectionCtype=="EXPANDCOLLAPSE"||sOuterSectionCtype=="SUBNOTECONTROLGROUP"||sOuterSectionCtype=="EXPANDCOLLAPSECOMPANY3RDYEAR")
-					{
-						sSectionLabel = sOuterSection;
-						//debugger;
-						//debugger;
-						//aSection.unshift(oOuterSection);
-						break;
-					}
-				}
-			}
-		}
-		return sSectionLabel;
-	}	
 </script>

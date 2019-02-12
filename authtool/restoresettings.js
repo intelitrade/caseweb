@@ -64,7 +64,7 @@ try{
 			var aSelection = [];
 			
 			var aTempSection = selectedoptions();
-			if(isInputValid(aTempSection))
+			if(validateCharString(aTempSection))
 				aSelection = aTempSection;
 			
 			window.returnValue = aSelection;
