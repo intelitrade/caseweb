@@ -253,8 +253,6 @@ function gotoSection(oElement)
 function buildTreeViewEx(sSectionLabel,oDoc)//,oProgBar)
 {
 	try{
-		//Ex=3456;
-		
 		var CTABLETYPE = "CTABLETYPE";
 		var sColor = "";
 		if(isInputValid(sSectionLabel))
