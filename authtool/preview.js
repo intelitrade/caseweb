@@ -386,7 +386,6 @@ function updatePreviewPane(oElement)
 								updateTextSection(this)">'+oDoc.para(ii).getText()+'</span>';
 				}
 			}
-			
 			sStr= '<table>\
 						<tr>\
 							<td colspan=2 width:100%>\
@@ -456,9 +455,7 @@ function updatePreviewPane(oElement)
 		}
 		var oEditorPane = document.getElementById("editorPane").innerHTML = sStr;
 		var sTable = oElement.getAttribute("tablename");
-		
-		//debugger;
-		//debugger;
+
 		if(isInputValid(sTable))
 			previewDocument(sTable);
 		
