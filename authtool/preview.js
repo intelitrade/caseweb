@@ -1,8 +1,8 @@
 function updatePreviewPane(oElement)
 {
 	try{
-		debugger;
-		debugger;
+		//debugger;
+		//debugger;  
 		var sStr = "";
 		
 		//Clear the editor pane
@@ -44,10 +44,7 @@ function updatePreviewPane(oElement)
 			{
 				sMapNo = oMapCell.value;
 			}
-			
-			//debugger;
-			//debugger;
-			
+					
 			var sCellValue = oCell.value;
 			var sCalc = oCell.calculation;
 			//Check if input row or header row
