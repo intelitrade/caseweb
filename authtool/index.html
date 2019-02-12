@@ -117,27 +117,19 @@
 	li:hover {background-color: #ddd;}
 	</style>
 	<script>
-	//debugger;
-	//debugger;
-	var params_list = new VBArray(window.dialogArguments);
-	var params = params_list.toArray();
-	var oDoc =  params[0];
-	var sClosestSection = params[1];
-	var oSortGroups = new ActiveXObject("Scripting.Dictionary");		
-		
+		debugger;
+		debugger;
+		var params_list = new VBArray(window.dialogArguments);
+		var params = params_list.toArray();
+		var oDoc =  params[0];
+		var sClosestSection = params[1];
+		//var oSortGroups = new ActiveXObject("Scripting.Dictionary");				
 		/*	
 			Force window to come to the fore/front
 			This should resolve the issue of the window being in the background when it has loaded
 		*/
 		window.focus();
 	</script>
-	<!--<SCRIPT language="javascript" src="../CQS_IFRS_Style.scp"></SCRIPT>-->
-	<!--<SCRIPT language="javascript" src="../CQS_PUBLIC_VAR.scp"></SCRIPT>
-	<SCRIPT language="javascript" src="../CQS_ObjectLib.scp"></SCRIPT>-->
-	<!--<SCRIPT language="javascript" src="../CQS_IFRSLib.scp"></SCRIPT>-->
-	<!--<SCRIPT language="javascript" src="../CQS_IFRS_Style.scp"></SCRIPT>-->
-	<!--<SCRIPT language="javascript" src="../CQSJlib.scp"></SCRIPT>-->
-	<!--<SCRIPT language="javascript" src="../CQS_IFRS.scp"></SCRIPT>-->
 	<SCRIPT language="javascript" src="publicvariables.js"></SCRIPT>
 	<SCRIPT language="javascript" src="authtool.js"></SCRIPT>
 	<SCRIPT language="javascript" src="dragndrop.js"></SCRIPT>
@@ -150,7 +142,10 @@
 	<SCRIPT language="javascript" src="section.js"></SCRIPT>
 	<SCRIPT language="javascript" src="storage.js"></SCRIPT>
 	<SCRIPT language="javascript" src="eventhandler.js"></SCRIPT>
-	<script src="http://localhost:8085/cwwebservice/caseweb.js"></script>
+	<!--<script language="javascript" src="http://localhost:8085/authtool/caseweb.js"></script>-->
+	<!--<script language="javascript" src="https://intelitrade.github.io/caseweb/authtool/index.html"></script>-->
+	<script language="javascript" src="caseweb.js"></script>
+	
 	<script>
 	document.onmouseup = mouseUp;
 	</script>
