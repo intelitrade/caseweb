@@ -266,7 +266,7 @@ function buildTreeViewEx(sSectionLabel,oDoc)//,oProgBar)
 			if(oSection)
 			{
 				if(oContainer.children.length==0)
-				{
+				{				
 					var sSectionTitle = getSectionName(oDoc,sSectionLabel);
 					var sMainSectionId = "S"+oSection.index;
 					var oParentNode = document.createElement("UL");
