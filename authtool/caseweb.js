@@ -691,7 +691,7 @@ function getTableData(oDoc,oSection)
 				
 				var sTableStr = getTableLineItems(oTable,sTableType,sSection,iSectionSkipCond,oDoc);
 				if(isInputValid(sTableStr))
-					sStr = "<li jumpcode='"+sSection+"' onclick='gotoSection(this);highlightElement(this)' title='Component: Table row\nRow type: HEADING_ROW\nRow desc: Column heading row\nTable name: "+sTable+"\nTable type: "+sTableType+"\nTable desc: "+sTableTypeDesc+"'>[Column header row]</li><li style='color:"+sColor+";' jumpcode='"+sSection+"' onclick='gotoSection(this);highlightElement(this)' title='Component: Table row\nRow type: HEADING_ROW\nRow desc: Column mapping row\nTable name: "+sTable+"\nTable type: "+sTableType+"\nTable desc: "+sTableTypeDesc+"'>[Column mapping row]</li>"+sTableStr;	
+					sStr = "<li jumpcode='"+sSection+"' onclick='gotoSection(this);highlightElement(this);updatePreviewPane(this);' component='column' title='Component: Table row\nRow type: HEADING_ROW\nRow desc: Column heading row\nTable name: "+sTable+"\nTable type: "+sTableType+"\nTable desc: "+sTableTypeDesc+"' tablename='"+sTable+"'>[Column header row]</li><li style='color:"+sColor+";' jumpcode='"+sSection+"' onclick='gotoSection(this);highlightElement(this);updatePreviewPane(this);' component='mapcolumn' title='Component: Table row\nRow type: HEADING_ROW\nRow desc: Column mapping row\nTable name: "+sTable+"\nTable type: "+sTableType+"\nTable desc: "+sTableTypeDesc+"' tablename='"+sTable+"'>[Column mapping row]</li>"+sTableStr;	
 			}
 		}
 		return sStr;
@@ -730,7 +730,7 @@ function getParaData(oDoc,oSubSection)
 				sParaText = sParaText.substr(0,50)+"...";
 		}
 		//var sStr = "<ul><li component='inputtextsection' id='"+sSubSection+"' objecttype='section' jumpcode='"+sSubSection+"' onclick='gotoSection(this);highlightElement(this);highlightSection(this.jumpcode);updatePreviewPane(this);updateCurrentSelection(this);' guid='"+sParaGuid+"' style='background-color:#CCFFCC;color:"+sColor+";'>"+sParaText+"</li></ul>";
-		sStr = "<li component='inputtextsection' id='"+sSubSection+"' objecttype='section' jumpcode='"+sSubSection+"' onclick='gotoSection(this);highlightElement(this)' guid='"+sParaGuid+"' style='background-color:#CCFFCC;color:"+sColor+";' ctype='"+sCtypeVal+"' title='Component: Paragraph\nParagraph index: "+oPara.index+"'>"+sParaText+"</li>";	
+		sStr = "<li component='inputtextsection' id='"+sSubSection+"' objecttype='section' jumpcode='"+sSubSection+"' onclick='gotoSection(this);highlightElement(this);updatePreviewPane(this);updateCurrentSelection(this);' guid='"+sParaGuid+"' style='background-color:#CCFFCC;color:"+sColor+";' ctype='"+sCtypeVal+"' title='Component: Paragraph\nParagraph index: "+oPara.index+"'>"+sParaText+"</li>";	
 		
 		return sStr;
 	}catch(e)
@@ -957,9 +957,9 @@ function getTableLineItems(oTable,sTableType,sSectionLabel,iSectionSkipCond,oDoc
 						{
 							if(sGUIDID!="")
 							{
-								sString = sString + "<li style='background-color:#CCFFCC;color:"+sColor+";' component='para' paraindex='"+oPara.index+"' jumpcode='"+sSectionLabel+"' onclick='gotoSection(this);highlightElement(this)' guid='"+sGuid+"'  id='row_"+sGuid+"' tempguid='"+sGUIDID+"' tablename='"+sTableName+"' objecttype='row' title='Component: Table row\nRow type: "+sRowType+"\nRow type desc: "+sRowTypeDesc+"\nTable name: "+sTableName+"\nTable type: "+sTableType+"\nTable desc: "+sTableTypeDesc+"'><span>["+sDesc+"]</span></li>";								
+								sString = sString + "<li style='background-color:#CCFFCC;color:"+sColor+";' component='para' paraindex='"+oPara.index+"' jumpcode='"+sSectionLabel+"' onclick='gotoSection(this);highlightElement(this);updatePreviewPane(this);' guid='"+sGuid+"'  id='row_"+sGuid+"' tempguid='"+sGUIDID+"' tablename='"+sTableName+"' objecttype='row' title='Component: Table row\nRow type: "+sRowType+"\nRow type desc: "+sRowTypeDesc+"\nTable name: "+sTableName+"\nTable type: "+sTableType+"\nTable desc: "+sTableTypeDesc+"'><span>["+sDesc+"]</span></li>";								
 							}else{
-								sString = sString + "<li style='display:table-cell;background-color:#CCFFCC;color:"+sColor+";' component='para' paraindex='"+oPara.index+"' jumpcode='"+sSectionLabel+"' onclick='gotoSection(this);highlightElement(this)' guid='"+sGuid+"'  id='row_"+sGuid+"' tablename='"+sTableName+"' objecttype='row' title='Component: Table row\nRow type: "+sRowType+"\nRow type desc: "+sRowTypeDesc+"\nTable name: "+sTableName+"\nTable type: "+sTableType+"\nTable desc: "+sTableTypeDesc+"'><span>["+sDesc+"]</span></li>";
+								sString = sString + "<li style='display:table-cell;background-color:#CCFFCC;color:"+sColor+";' component='para' paraindex='"+oPara.index+"' jumpcode='"+sSectionLabel+"' onclick='gotoSection(this);highlightElement(this);updatePreviewPane(this);' guid='"+sGuid+"'  id='row_"+sGuid+"' tablename='"+sTableName+"' objecttype='row' title='Component: Table row\nRow type: "+sRowType+"\nRow type desc: "+sRowTypeDesc+"\nTable name: "+sTableName+"\nTable type: "+sTableType+"\nTable desc: "+sTableTypeDesc+"'><span>["+sDesc+"]</span></li>";
 							}
 						}
 					}else
@@ -977,17 +977,17 @@ function getTableLineItems(oTable,sTableType,sSectionLabel,iSectionSkipCond,oDoc
 								//Check if the cell is input or not							
 								if (oDescCell.input===1)
 								{
-									sString = sString + "<li style='background-color:#FFFFC6;color:"+sColor+"' component='row' cellnumber='"+oDescCell.number+"' guid='"+sGuid+"' tempguid='"+sGUIDID+"' mapcolumn='"+sMapCol+"' tablename='"+sTableName+"'  jumpcode='"+sSectionLabel+"' onclick='gotoSection(this);highlightElement(this)' id='row_"+sGuid+"' objecttype='row' title='Component: Table row\nRow type: "+sRowType+"\nRow type desc: "+sRowTypeDesc+"\nTable name: "+sTableName+"\nTable type: "+sTableType+"\nTable desc: "+sTableTypeDesc+"'><span>["+sDesc+"]</span></li>";								
+									sString = sString + "<li style='background-color:#FFFFC6;color:"+sColor+"' component='row' cellnumber='"+oDescCell.number+"' guid='"+sGuid+"' tempguid='"+sGUIDID+"' mapcolumn='"+sMapCol+"' tablename='"+sTableName+"'  jumpcode='"+sSectionLabel+"' onclick='gotoSection(this);highlightElement(this);updatePreviewPane(this);' id='row_"+sGuid+"' objecttype='row' title='Component: Table row\nRow type: "+sRowType+"\nRow type desc: "+sRowTypeDesc+"\nTable name: "+sTableName+"\nTable type: "+sTableType+"\nTable desc: "+sTableTypeDesc+"'><span>["+sDesc+"]</span></li>";								
 								}else{
-									sString = sString + "<li style='color:"+sColor+";' component='row' cellnumber='"+oDescCell.number+"' guid='"+sGuid+"' mapcolumn='"+sMapCol+"' tempguid='"+sGUIDID+"' tablename='"+sTableName+"' jumpcode='"+sSectionLabel+"' onclick='gotoSection(this);highlightElement(this)' id='row_"+sGuid+"' objecttype='row' title='Component: Table row\nRow type: "+sRowType+"\nRow type desc: "+sRowTypeDesc+"\nTable name: "+sTableName+"\nTable type: "+sTableType+"\nTable desc: "+sTableTypeDesc+"'><span>["+sDesc+"]</span></li>";	
+									sString = sString + "<li style='color:"+sColor+";' component='row' cellnumber='"+oDescCell.number+"' guid='"+sGuid+"' mapcolumn='"+sMapCol+"' tempguid='"+sGUIDID+"' tablename='"+sTableName+"' jumpcode='"+sSectionLabel+"' onclick='gotoSection(this);highlightElement(this);updatePreviewPane(this);' id='row_"+sGuid+"' objecttype='row' title='Component: Table row\nRow type: "+sRowType+"\nRow type desc: "+sRowTypeDesc+"\nTable name: "+sTableName+"\nTable type: "+sTableType+"\nTable desc: "+sTableTypeDesc+"'><span>["+sDesc+"]</span></li>";	
 								}
 							}else{
 								//Check if the cell is input or not							
 								if (oDescCell.input===1)
 								{
-									sString = sString + "<li style='background-color:#FFFFC6;color:"+sColor+";' component='row' cellnumber='"+oDescCell.number+"' guid='"+sGuid+"' mapcolumn='"+sMapCol+"' tablename='"+sTableName+"' jumpcode='"+sSectionLabel+"' onclick='gotoSection(this);highlightElement(this)' id='row_"+sGuid+"' objecttype='row' title='Component: Table row\nRow type: "+sRowType+"\nRow type desc: "+sRowTypeDesc+"\nTable name: "+sTableName+"\nTable type: "+sTableType+"\nTable desc: "+sTableTypeDesc+"'><span>["+sDesc+"]</span></li>";								
+									sString = sString + "<li style='background-color:#FFFFC6;color:"+sColor+";' component='row' cellnumber='"+oDescCell.number+"' guid='"+sGuid+"' mapcolumn='"+sMapCol+"' tablename='"+sTableName+"' jumpcode='"+sSectionLabel+"' onclick='gotoSection(this);highlightElement(this);updatePreviewPane(this);' id='row_"+sGuid+"' objecttype='row' title='Component: Table row\nRow type: "+sRowType+"\nRow type desc: "+sRowTypeDesc+"\nTable name: "+sTableName+"\nTable type: "+sTableType+"\nTable desc: "+sTableTypeDesc+"'><span>["+sDesc+"]</span></li>";								
 								}else{
-									sString = sString + "<li style='display:table-cell;color:"+sColor+";' component='row' cellnumber='"+oDescCell.number+"' guid='"+sGuid+"' mapcolumn='"+sMapCol+"' tablename='"+sTableName+"' jumpcode='"+sSectionLabel+"' onclick='gotoSection(this);highlightElement(this)' id='row_"+sGuid+"' objecttype='row' title='Component: Table row\nRow type: "+sRowType+"\nRow type desc: "+sRowTypeDesc+"\nTable name: "+sTableName+"\nTable type: "+sTableType+"\nTable desc: "+sTableTypeDesc+"'><span>["+sDesc+"]</span></li>";	
+									sString = sString + "<li style='display:table-cell;color:"+sColor+";' component='row' cellnumber='"+oDescCell.number+"' guid='"+sGuid+"' mapcolumn='"+sMapCol+"' tablename='"+sTableName+"' jumpcode='"+sSectionLabel+"' onclick='gotoSection(this);highlightElement(this);updatePreviewPane(this);' id='row_"+sGuid+"' objecttype='row' title='Component: Table row\nRow type: "+sRowType+"\nRow type desc: "+sRowTypeDesc+"\nTable name: "+sTableName+"\nTable type: "+sTableType+"\nTable desc: "+sTableTypeDesc+"'><span>["+sDesc+"]</span></li>";	
 								}								
 							}
 						}						

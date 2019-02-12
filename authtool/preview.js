@@ -28,7 +28,7 @@ function updatePreviewPane(oElement)
 				//Use the temporary GUID generated during loading to get the row
 				var sTempGuid = oElement.getAttribute("tempguid");
 				var iTempRowNumber = getRowNumber(oTable,sTempGuid,"TEMPGUID");
-				if(validateCharString(iTempRowNumber)&&(iTempRowNumber!=iRowNumber))
+				if(isInputValid(iTempRowNumber)&&(iTempRowNumber!=iRowNumber))
 					iRowNumber = iTempRowNumber;
 			}
 
@@ -165,7 +165,7 @@ function updatePreviewPane(oElement)
 				//Use the temporary GUID generated during loading to get the row
 				var sTempGuid = oElement.getAttribute("tempguid");
 				var iTempRowNumber = getRowNumber(oTable,sTempGuid,"TEMPGUID");
-				if(validateCharString(iTempRowNumber)&&(iTempRowNumber!=iRowNumber))
+				if(isInputValid(iTempRowNumber)&&(iTempRowNumber!=iRowNumber))
 					iRowNumber = iTempRowNumber;
 			}
 			var oRow = oTable.getRow(iRowNumber);				
@@ -583,7 +583,7 @@ function addCVTableDataToHTMLTable(sCVTableName, sHTMLTableId)
 								oHTMLTable.rows[(i-1)].cells[(j-1)].style.textAlign = "right";							
 							}
 							
-							if(sRowType==INPUTTOTAL_ROW||sRowType==SUBTOTAL_ROW||sRowType==LINKTOTAL_ROW||sRowType==LINKSUBTOTAL_ROW||sRowType==TOTAL_ROW)
+							//if(sRowType==INPUTTOTAL_ROW||sRowType==SUBTOTAL_ROW||sRowType==LINKTOTAL_ROW||sRowType==LINKSUBTOTAL_ROW||sRowType==TOTAL_ROW)
 								//oHTMLTable.rows[(i-1)].cells[(j-1)].style.borderWidth = "2px 1px 3px 1px";//"thick solid";// #0000FF";	
 
 							if(sColType==NOTEREF_COL||sColType==LS_COL||sColType==ST_REF_COL||sRowType==CONTROL_ROW||sRowType==HEADING_ROW||sRowType==SUBHEADING_ROW)
@@ -598,8 +598,6 @@ function addCVTableDataToHTMLTable(sCVTableName, sHTMLTableId)
 							if(sRowType==THINKLINE_ROW){
 								oHTMLTable.rows[(i-1)].cells[(j-1)].innerHTML="<hr style='border-width:5px;border-color:black;'/>";
 							}
-							
-							//if(sColType==)
 						}
 						oProgBar.updateProgress(1);
 					}

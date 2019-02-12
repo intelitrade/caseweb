@@ -7,13 +7,6 @@ try{
 		alert(sIEInfo);
 		window.close();
     }
-	/*debugger;
-	debugger;
-	var params_list = new VBArray(window.dialogArguments);
-	var params = params_list.toArray();
-	var oDoc =  params[0];
-	var sClosestSection = params[1];
-	var oSortGroups = new ActiveXObject("Scripting.Dictionary");*/
 	
 	var sMappingHTML = "";
 
@@ -51,7 +44,7 @@ try{
 			for(var i=1;i<=iRows;i++)
 			{
 				var oRow = oTable.getRow(i);
-				if(validateCharString(sGUIDID)!=""){
+				if(isInputValid(sGUIDID)!=""){
 					if(oRow.propGet("TEMPGUID")===sGiud)
 					{
 						iRow = i;
