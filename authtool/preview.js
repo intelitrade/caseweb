@@ -81,6 +81,7 @@ function updatePreviewPane(oElement)
 									<b>GUID: </b>\
 								</td>\
 								<td><input type="text" disabled style="width:75%" id="guidrow" value="'+sGuid+'"> <input '+sDisableGuid+' type="button" value="Generate..." style="width:20%" tempguid="'+sTempGuid+'" tablename="'+sTable+'" onClick="addGUIDToRow(this)"></td></tr></table>';
+								
 			}else if(sRowType=="S1"||sRowType=="S2"){
 				sStr= '<table>\
 							<tr>\
@@ -281,7 +282,7 @@ function updatePreviewPane(oElement)
 					}							
 				}
 			}
-			sStr = sStr +'</table>';					
+			sStr = '<table>'+sStr +'</table>';					
 		}else if(sElement==="mapcolumn")
 		{
 
@@ -354,7 +355,7 @@ function updatePreviewPane(oElement)
 						</tr>';	
 				}					
 			}
-			sStr = sStr +'</table>';					
+			sStr = '<div style="width:900px">'+sStr +'</table></div>';					
 		}
 		else if(sElement==="inputtextsection")
 		{
@@ -453,9 +454,11 @@ function updatePreviewPane(oElement)
 		}
 		var oEditorPane = document.getElementById("editorPane").innerHTML = sStr;
 		var sTable = oElement.getAttribute("tablename");
-
-		if(isInputValid(sTable))
+		
+		//reomoved due to speed, will make user experience bitter sweet, actually bitter
+		/*if(isInputValid(sTable))
 			previewDocument(sTable);
+		*/
 		
 	}catch(e)
 	{
@@ -471,8 +474,10 @@ function previewDocument(sCVTableName)
 		//document.getElementById("editorPane").innerHTML = '<table width="100%" height="100%"><tr><td width="100%" height="100%" align="center"><p><b>Select Item on the left to view / modify its properties</b></p><object width="100%" height="400" data="PWC Illustrative Financial Statements 2013 - Financial statements - IFRS.pdf"></object></td></tr></table>';
 		//debugger;
 		//debugger;
-		var sCVTableName = "HBD";
-		var sCVTableName = "MFG";
+		//For demo purposes
+		if(isInputValid(sCVTableName))
+			var sCVTableName = "HBD";
+		//var sCVTableName = "MFG";
 		var oTable = oDoc.tableByName(sCVTableName);
 		if(isInputValid(oTable))
 		{
@@ -485,6 +490,8 @@ function previewDocument(sCVTableName)
 				//var sHTMLStr = document.getElementById("editorPane").innerHTML="Preview of Table HBD";
 				document.getElementById("editorPane").appendChild(oHTMLTable);
 				var sHTMLTableId = oHTMLTable.id;
+				//Set the name of the table
+				oHTMLTable.setAttribute("title","Table name: "+sCVTableName+"\nTable id:"+sHTMLTableId+"\nTable GUID:"+oTable.propGet("GUID")+"\nColumns: "+iColumns+"\nRows: "+iRows);
 				//debugger;
 				//debugger;
 				addCVTableDataToHTMLTable(sCVTableName, sHTMLTableId);
@@ -492,7 +499,7 @@ function previewDocument(sCVTableName)
 		}
 	}catch(e)
 	{
-		logError(e);
+		alert(e.description);
 	}finally
 	{
 		
@@ -524,6 +531,8 @@ function addCVTableDataToHTMLTable(sCVTableName, sHTMLTableId)
 							oHTMLTable.rows[(i-1)].style.color="red";
 							//continue;
 						
+						//oHTMLTable.rows[(i-1)].setAttribute("title","Row type: "oRow.propGet("CROWTYPE"));
+						
 						if(oRow.evaluateSkip()==1)
 						{
 							oHTMLTable.rows[(i-1)].style.color="blue";//continue;
@@ -531,7 +540,7 @@ function addCVTableDataToHTMLTable(sCVTableName, sHTMLTableId)
 						
 						if(oRow.evaluateHide()==1)
 						{
-							oHTMLTable.rows[(i-1)].style.color="red";
+							//oHTMLTable.rows[(i-1)].style.color="red";
 						}
 							//continue;
 						
@@ -574,6 +583,8 @@ function addCVTableDataToHTMLTable(sCVTableName, sHTMLTableId)
 
 							var sColType = oCVTable.getColumn(j).propGet(CCOLTYPE);
 							
+							oHTMLTable.rows[(i-1)].cells[(j-1)].setAttribute("title","Row: "+i+"\nColumn: "+j+"\nRow type: "+sRowType+"\nColumn type: "+sColType);
+							
 							oHTMLTable.rows[(i-1)].cells[(j-1)].innerHTML = sText;//oPara.getText();
 						
 							if((sRowType==LINKTOTALSKIP_ROW||sRowType==BALCHK_ROW||sRowType==TOTAL_ROW||sRowType==SUBTOTAL_ROW||sRowType==LINKTOTAL_ROW||sRowType==LINKSUBTOTAL_ROW||sRowType==CALC1_ROW||sRowType==CALC2_ROW||sRowType==CALC3_ROW||sRowType==CALC4_ROW||sRowType==CALC5_ROW||sRowType==CALC6_ROW||sRowType==CALC7_ROW||sRowType==CALC8_ROW||sRowType==CALC9_ROW||sRowType==CALC10_ROW||sRowType==LINKTOTALSKIP_ROW||sRowType==BALCHK_ROW||sRowType==NOTE_ROW||sRowType==CALCB_ROW||sRowType==CALCC_ROW||sRowType==INPUT_ROW||sRowType==TEXTCALC1_ROW||sRowType==INPUTPERCENT_ROW||sRowType==INPUTROLLFORWARD_ROW||sRowType==INPUTDESCNOT_ROW||sRowType==INPUTBULLET_ROW||sRowType==INPUTTOTAL_ROW||sRowType==ACTCALC1_ROW||sRowType==ACTCALC2_ROW)&&(sColType==CALC_COL||sColType==VARIANCE_COL||sColType==TOTAL_COL||sColType==PERCENT_COL))
@@ -600,7 +611,8 @@ function addCVTableDataToHTMLTable(sCVTableName, sHTMLTableId)
 						oProgBar.updateProgress(1);
 					}
 					oProgBar.destroyProgressBar();
-					
+					//debugger;
+					//debugger;
 					var oProgBar = oDoc.createProgressBar("Clean up...",iRows,1);
 					//Turn hide columns that do no need to be shown
 					for(var i=1;i<=iColumns;i++)
@@ -625,19 +637,21 @@ function addCVTableDataToHTMLTable(sCVTableName, sHTMLTableId)
 
 function hideCol(sTableId,iCol){
 
+			//debugger;
+		//debugger;
 	var col = iCol;//document.getElementById("txtCol").value;
 	if (isNaN(col) || col == "") {
-		alert("Invalid Column");
+		alert("Invalidxx Column");
 		return;
 	}
 	col = parseInt(col, 10);
 	col = col - 1;
 	var tbl = document.getElementById(sTableId)//;"tblMain");
 	if (tbl != null) {
-		if (col < 0 || col >= tbl.rows.length - 1) {
+		/*if (col < 0 || col >= tbl.rows.length - 1) {
 			alert("Invalid Column");
 			return;
-		}
+		}*/
 		for (var i = 0; i < tbl.rows.length; i++) {
 			/*for (var j = 0; j < tbl.rows[i].cells.length; j++) {
 				tbl.rows[i].cells[j].style.display = "";

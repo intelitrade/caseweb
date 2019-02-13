@@ -374,15 +374,17 @@ function saveProject()
 {
 	try{
 		
-		debugger;
-		debugger;
+		//debugger;
+		//debugger;
 		
 		//var sContent = document.getElementById("MainContentContainer").innerHTML;
 		//Save as html file
-		var sPath = oDoc.interpret("clntdir()") + "\\AuthToolProject.html";
+		var sPath = oDoc.interpret("clntdir()") + "AuthToolProject.html";
 		//var sPath = "C:\\AuthToolProject.html"
 		var sContent = document.documentElement.outerHTML;
 		createTextFile(sPath,sContent);
+		
+		alert("Projet saved in the following location\n"+sPath);
 	}catch(e)
 	{
 		logError(e);
